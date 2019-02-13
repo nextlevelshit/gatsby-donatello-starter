@@ -3,13 +3,14 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from '../../config/Theme';
 import { media } from '../utils/media';
-import split from 'lodash/split';
+// import split from 'lodash/split';
 import './layout.scss';
+import { Header } from './Header';
+import { Footer } from './Footer';
 
 const GlobalStyle = createGlobalStyle`
   ::selection {
-    color: ${theme.colors.bg};
-    background: ${theme.colors.primary};
+    background: ${theme.colors.secondary};
   }
   body {
     background: ${theme.colors.bg};
@@ -19,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   a {
-    color: ${theme.colors.grey.dark};
+    color: ${theme.colors.primary};
     text-decoration: none;
     transition: all ${theme.transitions.normal};
   }
@@ -28,19 +29,6 @@ const GlobalStyle = createGlobalStyle`
   }
   h1, h2, h3, h4 {
     color: ${theme.colors.grey.dark};
-  }
-  blockquote {
-    font-style: italic;
-    position: relative;
-  }
-
-  blockquote:before {
-    content: "";
-    position: absolute;
-    background: ${theme.colors.primary};
-    height: 100%;
-    width: 6px;
-    margin-left: -1.6rem;
   }
   label {
     margin-bottom: .5rem;
@@ -60,13 +48,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Footer = styled.footer`
-  text-align: center;
-  padding: 3rem 0;
-  span {
-    font-size: 0.75rem;
-  }
-`;
+// const Footer = styled.footer`
+//   text-align: center;
+//   padding: 3rem 0;
+//   span {
+//     font-size: 0.75rem;
+//   }
+// `;
 
 export class Layout extends React.PureComponent<{}> {
   public render() {
@@ -85,12 +73,14 @@ export class Layout extends React.PureComponent<{}> {
           <ThemeProvider theme={theme}>
             <React.Fragment>
               <GlobalStyle />
+              <Header />
               {children}
-              <Footer>
+              <Footer />
+              {/* <Footer>
                 &copy; {split(data.site.buildTime, '.')[2]} by Majid Hajian. All rights reserved. <br />
                 <a href="https://github.com/mhadaily/gatsby-starter-typescirpt-power-blog">GitHub Repository</a> <br />
                 <span>Last build: {data.site.buildTime}</span>
-              </Footer>
+              </Footer> */}
             </React.Fragment>
           </ThemeProvider>
         )}

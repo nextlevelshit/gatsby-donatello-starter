@@ -1,67 +1,57 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
-import { Layout, Wrapper, Button, Article } from '../components';
+import { Layout, Wrapper, Button, Article, Work } from '../components';
 import PageProps from '../models/PageProps';
 import Helmet from 'react-helmet';
 import config from '../../config/SiteConfig';
-import { media } from '../utils/media';
-import rgba from 'polished/lib/color/rgba';
-import darken from 'polished/lib/color/darken';
-import lighten from 'polished/lib/color/lighten';
+// import { media } from '../utils/media';
+// import rgba from 'polished/lib/color/rgba';
+// import darken from 'polished/lib/color/darken';
+// import lighten from 'polished/lib/color/lighten';
 
-const Homepage = styled.main`
-  display: flex;
-  height: 100vh;
-  flex-direction: row;
-  @media ${media.tablet} {
-    height: 100%;
-    flex-direction: column;
-  }
-  @media ${media.phone} {
-    height: 100%;
-    flex-direction: column;
-  }
-`;
+// const Homepage = styled.main``;
 
-const GridRow: any = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: ${(props: any) =>
-    props.background
-      ? `linear-gradient(
-      -185deg,
-      ${rgba(darken(0.1, props.theme.colors.primary), 0.7)}, 
-      ${rgba(lighten(0.1, props.theme.colors.grey.dark), 0.9)}), url(/assets/bg.png) no-repeat`
-      : null};
-  background-size: cover;
-  padding: 2rem 4rem;
-  color: ${(props: any) => (props.background ? props.theme.colors.white : null)};
-  h1 {
-    color: ${(props: any) => (props.background ? props.theme.colors.white : null)};
-  }
-  @media ${media.tablet} {
-    padding: 3rem 3rem;
-  }
-  @media ${media.phone} {
-    padding: 2rem 1.5rem;
-  }
-`;
+// const GridRow: any = styled.div`
+//   flex: 1;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background: ${(props: any) =>
+//     props.background
+//       ? `linear-gradient(
+//       -185deg,
+//       ${rgba(darken(0.1, props.theme.colors.primary), 0.7)},
+//       ${rgba(lighten(0.1, props.theme.colors.grey.dark), 0.9)}), url(/assets/bg.png) no-repeat`
+//       : null};
+//   background-size: cover;
+//   padding: 2rem 4rem;
+//   color: ${(props: any) => (props.background ? props.theme.colors.white : null)};
+//   h1 {
+//     color: ${(props: any) => (props.background ? props.theme.colors.white : null)};
+//   }
+//   @media ${media.tablet} {
+//     padding: 3rem 3rem;
+//   }
+//   @media ${media.phone} {
+//     padding: 2rem 1.5rem;
+//   }
+// `;
 
-const HomepageContent: any = styled.div`
-  max-width: 30rem;
-  text-align: ${(props: any) => (props.center ? 'center' : 'left')};
-`;
+// const HomepageContent: any = styled.div`
+//   max-width: 30rem;
+//   text-align: ${(props: any) => (props.center ? 'center' : 'left')};
+// `;
 
 export default class IndexPage extends React.Component<PageProps> {
   public render() {
     const { data } = this.props;
-    const { edges, totalCount } = data.allMarkdownRemark;
+    // const { edges, totalCount } = data.allMarkdownRemark;
     return (
       <Layout>
-        <Wrapper fullWidth={true}>
+        <Helmet title={config.siteTitle} />
+        <Work />
+        {/* <Wrapper fullWidth={true}>
           <Helmet title={`Homepage | ${config.siteTitle}`} />
           <Homepage>
             <GridRow background={true}>
@@ -117,7 +107,7 @@ export default class IndexPage extends React.Component<PageProps> {
               </HomepageContent>
             </GridRow>
           </Homepage>
-        </Wrapper>
+        </Wrapper> */}
       </Layout>
     );
   }

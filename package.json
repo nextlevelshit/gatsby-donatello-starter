@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-typescirpt-power-blog",
-  "description": "gatsyby blog template with typescript and tslint",
+  "name": "donatello-gatsby",
+  "description": "",
   "version": "1.0.0",
-  "author": "Majid Hajian ( mhadaily@gmail.com )",
+  "author": "Michael Czechowski <mail@dailysh.it>",
   "keywords": [
     "gatsby, typescript",
     "blog"

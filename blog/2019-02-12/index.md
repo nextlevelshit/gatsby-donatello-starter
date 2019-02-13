@@ -23,7 +23,7 @@ What comes up to your mind?
 Are you imagining yourself with bent posture, increasing wrinkles all over your body and facing a monoton daily routine?
 Or are you thinking of the modern age with flying cars, holographic displays and healthy protein pils for breakfast?
 
-I am not a distopian, I am not evoking the *Brave new World* by Aldous Huxley.
+I am not any distopian, I am not evoking the *Brave new World* by Aldous Huxley.
 I am just trying to capture my skeptical view of the on going changes in the world of technology, academic research and communication in an inter-connected world of humans and devices; users and adaptors; progress and regression; acceleration and deceleration.
 
 Hi, I am Michael Czechowski, 30 years old, born in Poland, bilingual in German and Polish, programming web engineer for about 15 years, holding undergraduate degrees in Business Informatics and Philosophy.

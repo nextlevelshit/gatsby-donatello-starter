@@ -11,10 +11,6 @@ export default class ContactPage extends React.Component<PageProps> {
     return (
       <Layout>
         <Helmet title={`Contact | ${config.siteTitle}`} />
-        <Header>
-          <Link to="/">{config.siteTitle}</Link>
-          <SectionTitle uppercase={true}>Contact</SectionTitle>
-        </Header>
         <Wrapper>
           <Content>
             <p>Super cool intro text to get people contacting me!</p>

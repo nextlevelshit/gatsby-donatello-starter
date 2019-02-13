@@ -8,6 +8,7 @@ export default {
   siteBanner: '/assets/banner.jpg', // Your image for og:image tag. You can find it in the /static folder
   defaultBg: '/assets/bg.png', // default post background header
   favicon: 'src/favicon.png', // Your image for favicons. You can find it in the /src folder
+  siteBrand: 'Sarah<br>Esser',
   siteDescription: `Sarah Esser, born 1977 in Münster, lives and works in Berlin as an artist and sculptor. As a „Meisterschülerin“ of Prof. Berndt Wilde (Kunsthochschule Berlin) she received several prizes and scholarships in Europe. Her oeuvre comprises more than 100 sculptures, drawings and watercolors.`, // Your site description
   author: 'Sarah Esser', // Author for schemaORGJSONLD
   siteLogo: '/assets/logo.png', // Image for schemaORGJSONLD
@@ -23,11 +24,17 @@ export default {
   backgroundColor: '#2b2e3c',
 
   // Settings for typography.ts
-  headerFontFamily: 'Bitter',
-  bodyFontFamily: 'Open Sans',
+  headerFontFamily: 'Roboto Mono',
+  bodyFontFamily: 'Roboto',
   baseFontSize: '18px',
 
+  // Grid Gutter
+  gridGutter: 1, // rem
+  gridColumns: 12,
+
+  columnsLeft: 2,
+  columnsRight: 10,
+
   //
-  Google_Tag_Manager_ID: '',
   POST_PER_PAGE: 4,
 };

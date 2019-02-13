@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
 import kebabCase from 'lodash/kebabCase';
-import { Layout, Wrapper, Header, Subline, SEO, PrevNext, SectionTitle, Content } from '../components';
+import { Layout, Wrapper, Subline, SEO, PrevNext, Content } from '../components';
 import config from '../../config/SiteConfig';
 import '../utils/prismjs-theme.css';
 import PathContext from '../models/PathContext';
@@ -30,14 +30,6 @@ export default class PostPage extends React.PureComponent<Props> {
           <>
             <SEO postPath={post.fields.slug} postNode={post} postSEO />
             <Helmet title={`${post.frontmatter.title} | ${config.siteTitle}`} />
-            <Header banner={post.frontmatter.banner}>
-              <Link to="/">{config.siteTitle}</Link>
-              <SectionTitle>{post.frontmatter.title}</SectionTitle>
-              <Subline light={true}>
-                {post.frontmatter.date} &mdash; {post.timeToRead} Min Read &mdash; In{' '}
-                <Link to={`/categories/${kebabCase(post.frontmatter.category)}`}>{post.frontmatter.category}</Link>
-              </Subline>
-            </Header>
             <Wrapper>
               <Content>
                 <PostContent dangerouslySetInnerHTML={{ __html: post.html }} />

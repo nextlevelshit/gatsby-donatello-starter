@@ -1,12 +1,13 @@
 const colors = {
-  primary: '#72cc96', // Color for buttons or links
+  primary: '#ff6343', // Color for buttons or links
+  secondary: '#ffe6e1',
   bg: '#fff', // Background color
   white: '#fff',
   grey: {
-    dark: 'rgba(0, 0, 0, 0.9)',
+    dark: '#212529',
     default: 'rgba(0, 0, 0, 0.7)',
-    light: 'rgba(0, 0, 0, 0.5)',
-    ultraLight: 'rgba(0, 0, 0, 0.25)',
+    light: '#6c757d',
+    ultraLight: '#f8f9fa',
   },
 };
 
@@ -15,8 +16,8 @@ const transitions = {
 };
 
 const fontSize = {
-  small: '0.9rem',
-  big: '2.9rem',
+  small: '.75rem',
+  big: '2.5rem',
 };
 
 export default {

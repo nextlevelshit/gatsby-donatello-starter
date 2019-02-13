@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-export const Title = styled.h3`
-  position: relative;
-  text-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+export const Title = styled.h1`
+  text-transform: uppercase;
+  letter-spacing: 0;
   margin-bottom: 0.75rem;
+  font-size: ${props => props.theme.fontSize.big};
 `;

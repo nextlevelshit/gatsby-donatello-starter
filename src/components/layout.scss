@@ -31,9 +31,14 @@ $black: #000;
 $grey: #595959;
 $grey-dark: #2b2b2b;
 $grey-light: #eee;
-$green: #86c023;
-$blue: #017ac7;
+$red: #ff6343;
+$peach: #ffe6e1;
 
 // Transition
 $duration: 400ms;
 $easing: ease;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
