@@ -6,9 +6,16 @@ import { Row } from './Row';
 import { Column } from './Column';
 import { Navigation } from './Navigation';
 import { NavigationBrand } from './NavigationBrand';
+import typography from '../utils/typography';
+import config from './../../config/SiteConfig';
+
+const headerHeight = (typography.options.baseLineHeight ? typography.options.baseLineHeight : 1) * config.headerHeightRatio;
 
 const HeaderWrapper: any = styled.header`
+  display: flex;
+  align-items: center;
   background-color: ${theme.colors.grey.ultraLight};
+  height: calc(${headerHeight} * ${config.baseFontSize});
 `;
 
 export class Header extends React.PureComponent<{}> {
@@ -17,10 +24,10 @@ export class Header extends React.PureComponent<{}> {
       <HeaderWrapper>
         <Container>
           <Row>
-            <Column width={{ default: 3 }}>
+            <Column width={{ default: config.defaultColumnsLeft }}>
               <NavigationBrand />
             </Column>
-            <Column width={{ default: 9 }}>
+            <Column width={{ default: config.defaultColumnsRight }}>
               <Navigation />
             </Column>
           </Row>

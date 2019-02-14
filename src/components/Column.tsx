@@ -13,7 +13,7 @@ interface Props {
 const width = {
   desktop: (props: Props) => (100 / config.gridColumns) * props.width.default,
   tablet: (props: Props) => (100 / config.gridColumns) * (props.width.tablet ? props.width.tablet : props.width.default),
-  phone: (props: Props) => (100 / config.gridColumns) * (props.width.phone ? props.width.phone : props.width.default)
+  phone: (props: Props) => (100 / config.gridColumns) * (props.width.phone ? props.width.phone : props.width.default),
 };
 
 export const Column = styled.div`

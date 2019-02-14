@@ -28,12 +28,16 @@ export default {
   bodyFontFamily: 'Roboto',
   baseFontSize: '18px',
 
+  // Header
+  headerHeightRatio: 1.5,
+  footerHeightRatio: 4,
+
   // Grid Gutter
   gridGutter: 1, // rem
   gridColumns: 12,
 
-  columnsLeft: 2,
-  columnsRight: 10,
+  defaultColumnsLeft: 2,
+  defaultColumnsRight: 10,
 
   //
   POST_PER_PAGE: 4,

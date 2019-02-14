@@ -6,6 +6,9 @@ import { Row } from './Row';
 import { Column } from './Column';
 
 const List = styled.ul`
+  display: flex;
+  height: 100%;
+  align-items: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -13,6 +16,8 @@ const List = styled.ul`
 
 const Item = styled.li`
   display: inline-block;
+  margin: 0;
+  padding: 0;
 `;
 
 export class Navigation extends React.PureComponent<{}> {

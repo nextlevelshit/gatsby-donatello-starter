@@ -5,8 +5,9 @@ import { Container } from './Container';
 import { Row } from './Row';
 import { Column } from './Column';
 import typography from './../utils/typography';
+import config from './../../config/SiteConfig';
 
-const footerHeight = (typography.options.baseLineHeight ? typography.options.baseLineHeight : 1) * 4;
+const footerHeight = (typography.options.baseLineHeight ? typography.options.baseLineHeight : 1) * config.footerHeightRatio;
 
 const FooterWrapper = styled.div`
   background-color: ${theme.colors.grey.ultraLight};
@@ -23,8 +24,8 @@ export class Footer extends React.PureComponent<{}> {
       <FooterWrapper>
         <Container>
           <Row>
-            <Column width={{ default: 3 }}>Made with love</Column>
-            <Column width={{ default: 9 }}>Navigation</Column>
+            <Column width={{ default: config.defaultColumnsLeft }}>Made with love</Column>
+            <Column width={{ default: config.defaultColumnsRight }}>Navigation</Column>
           </Row>
         </Container>
       </FooterWrapper>
