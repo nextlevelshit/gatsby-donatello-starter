@@ -30,7 +30,7 @@ export default {
 
   // Header
   headerHeightRatio: 1.5,
-  footerHeightRatio: 4,
+  footerHeightRatio: 2,
 
   // Grid Gutter
   gridGutter: 1, // rem
