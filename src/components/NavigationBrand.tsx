@@ -7,7 +7,7 @@ import config from '../../config/SiteConfig';
 
 const fontFamily = typography.options.headerFontFamily ? typography.options.headerFontFamily.join() : 'inherit';
 
-const NavigationBrandWrapper: any = styled.header`
+const NavigationBrandWrapper: any = styled.div`
   display: flex;
   height: 100%;
   align-items: center;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import config from '../../config/SiteConfig';
-import { Container } from './Container';
-import { Row } from './Row';
-import { Column } from './Column';
+// import config from '../../config/SiteConfig';
+// import { Container } from './Container';
+// import { Row } from './Row';
+// import { Column } from './Column';
 
 const List = styled.ul`
   display: flex;

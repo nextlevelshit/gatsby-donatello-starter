@@ -17,8 +17,8 @@ const width = {
 };
 
 export const Column = styled.div`
-  margin-left: ${config.gridGutter / 2}rem;
-  margin-right: ${config.gridGutter / 2}rem;
+  padding-left: ${config.gridGutter / 2}rem;
+  padding-right: ${config.gridGutter / 2}rem;
   max-width: ${width.desktop}%;
   flex: 0 0 ${width.desktop}%;
 

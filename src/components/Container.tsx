@@ -6,9 +6,10 @@ interface Props {
 }
 
 export const Container = styled.div`
-  width: ${(props: Props) => (props.fullWidth ? '100%' : '100rem')};
-  padding-right: calc(${config.gridGutter} / 2);
-  padding-left: calc(${config.gridGutter} / 2);
+  max-width: ${(props: Props) => (props.fullWidth ? '100%' : '80rem')};
+  flex: 1;
+  padding-right: ${config.gridGutter / 2}rem;
+  padding-left: ${config.gridGutter / 2}rem;
   margin-right: auto;
   margin-left: auto;
 `;

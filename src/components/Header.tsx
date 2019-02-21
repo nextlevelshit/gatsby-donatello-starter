@@ -16,6 +16,7 @@ const HeaderWrapper: any = styled.header`
   align-items: center;
   background-color: ${theme.colors.grey.ultraLight};
   height: calc(${headerHeight} * ${config.baseFontSize});
+  width: 100%;
 `;
 
 export class Header extends React.PureComponent<{}> {
