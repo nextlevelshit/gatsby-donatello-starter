@@ -17,6 +17,10 @@ const NavigationBrandWrapper: any = styled.div`
   text-transform: uppercase;
 `;
 
+const BrandLink = styled(Link)`
+  color: ${theme.colors.grey.dark};
+`;
+
 export class NavigationBrand extends React.PureComponent<{}> {
   public render() {
     const props = {
@@ -25,7 +29,7 @@ export class NavigationBrand extends React.PureComponent<{}> {
 
     return (
       <NavigationBrandWrapper>
-        <Link to={`/`} {...props} />
+        <BrandLink to={`/`} {...props} />
       </NavigationBrandWrapper>
     );
   }
