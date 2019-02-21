@@ -12,7 +12,7 @@ const colors = {
 };
 
 const transitions = {
-  normal: '0.5s',
+  normal: '0.32s',
 };
 
 const fontSize = {

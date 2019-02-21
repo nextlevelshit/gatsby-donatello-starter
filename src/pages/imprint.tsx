@@ -6,11 +6,11 @@ import { Layout, Wrapper, Header, Button, Content, SectionTitle } from '../compo
 import config from '../../config/SiteConfig';
 import PageProps from '../models/PageProps';
 
-export default class IndexPage extends React.Component<PageProps> {
+export default class ImprintPage extends React.Component<PageProps> {
   render() {
     return (
       <Layout>
-        <Helmet title={`Contact | ${config.siteTitle}`} />
+        <Helmet title={`Imprint | ${config.siteTitle}`} />
       </Layout>
     );
   }
