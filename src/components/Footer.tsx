@@ -48,10 +48,10 @@ export class Footer extends React.PureComponent<{}> {
             </Column>
             <Column width={{ default: config.defaultColumnsRight }}>
               <FooterLinkWrapper>
-                <Link to="imprint" activeClassName="active">
+                <Link to="/imprint" activeClassName="active">
                   Imprint
                 </Link>
-                <Link to="impressum" activeClassName="active">
+                <Link to="/impressum" activeClassName="active">
                   Impressum
                 </Link>
               </FooterLinkWrapper>
