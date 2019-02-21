@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
-import { Layout, Wrapper, Header, SectionTitle, Content, Title } from '../components';
+import { Layout, Wrapper, Header, Title } from '../components';
 
 import config from '../../config/SiteConfig';
 import PageProps from '../models/PageProps';
@@ -14,7 +14,7 @@ export default class AllCategoryTemplate extends React.PureComponent<PageProps> 
       return (
         <Layout>
           <Helmet title={`Categories | ${config.siteTitle}`} />
-          <Header>
+          {/* <Header>
             <Link to="/">{config.siteTitle}</Link>
             <SectionTitle>Categories</SectionTitle>
           </Header>
@@ -26,7 +26,7 @@ export default class AllCategoryTemplate extends React.PureComponent<PageProps> 
                 </Title>
               ))}
             </Content>
-          </Wrapper>
+          </Wrapper> */}
         </Layout>
       );
     }

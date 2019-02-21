@@ -1,17 +1,17 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Link, graphql } from 'gatsby';
-import styled from 'styled-components';
-import kebabCase from 'lodash/kebabCase';
-import { Layout, Wrapper, Subline, SEO, PrevNext, Content } from '../components';
+import { graphql } from 'gatsby';
+// import styled from 'styled-components';
+// import kebabCase from 'lodash/kebabCase';
+import { Layout, SEO } from '../components';
 import config from '../../config/SiteConfig';
 import '../utils/prismjs-theme.css';
 import PathContext from '../models/PathContext';
 import Post from '../models/Post';
 
-const PostContent = styled.div`
-  margin-top: 4rem;
-`;
+// const PostContent = styled.div`
+//   margin-top: 4rem;
+// `;
 
 interface Props {
   data: {
@@ -22,7 +22,7 @@ interface Props {
 
 export default class PostPage extends React.PureComponent<Props> {
   public render() {
-    const { prev, next } = this.props.pathContext;
+    // const { prev, next } = this.props.pathContext;
     const post = this.props.data.markdownRemark;
     return (
       <Layout>
@@ -30,7 +30,7 @@ export default class PostPage extends React.PureComponent<Props> {
           <>
             <SEO postPath={post.fields.slug} postNode={post} postSEO />
             <Helmet title={`${post.frontmatter.title} | ${config.siteTitle}`} />
-            <Wrapper>
+            {/* <Wrapper>
               <Content>
                 <PostContent dangerouslySetInnerHTML={{ __html: post.html }} />
                 {post.frontmatter.tags ? (
@@ -45,7 +45,7 @@ export default class PostPage extends React.PureComponent<Props> {
                 ) : null}
                 <PrevNext prev={prev} next={next} />
               </Content>
-            </Wrapper>
+            </Wrapper> */}
           </>
         ) : null}
       </Layout>
@@ -53,21 +53,21 @@ export default class PostPage extends React.PureComponent<Props> {
   }
 }
 
-export const postQuery = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-        date(formatString: "DD.MM.YYYY")
-        category
-        tags
-        banner
-      }
-      timeToRead
-    }
-  }
-`;
+// export const postQuery = graphql`
+//   query($slug: String!) {
+//     markdownRemark(fields: { slug: { eq: $slug } }) {
+//       html
+//       fields {
+//         slug
+//       }
+//       frontmatter {
+//         title
+//         date(formatString: "DD.MM.YYYY")
+//         category
+//         tags
+//         banner
+//       }
+//       timeToRead
+//     }
+//   }
+// `;

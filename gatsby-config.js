@@ -25,10 +25,41 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-lodash',
     {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        output: '/sitemap.xml',
+        // Exclude specific pages or groups of pages using glob parameters
+        // See: https://github.com/isaacs/minimatch
+        exclude: [],
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              edges {
+                node {
+                  path
+                }
+              }
+            }
+        }`
+      }
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'post',
-        path: `${__dirname}/blog`,
+        name: 'work',
+        path: `${__dirname}/work`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'pages',
+        path: `${__dirname}/pages`,
       },
     },
     {
