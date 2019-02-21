@@ -18,7 +18,7 @@ const FooterWrapper = styled.div`
   a {
     font-size: ${theme.fontSize.small};
     color: ${theme.colors.grey.light};
-  
+
     &:hover,
     &.active {
       color: ${theme.colors.grey.dark};
