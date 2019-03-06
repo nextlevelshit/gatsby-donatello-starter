@@ -7,6 +7,7 @@ import { media } from '../utils/media';
 import './layout.scss';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import * as PropTypes from 'prop-types';
 
 const GlobalStyle = createGlobalStyle`
   ::selection {
@@ -56,9 +57,30 @@ const GlobalStyle = createGlobalStyle`
 //   }
 // `;
 
+// let Modal;
+
+// import(`../components/Modal`).then(modal => {
+//   Modal = modal.default;
+// });
+
 export class Layout extends React.PureComponent<{}> {
+  static propTypes = {
+    isModal: PropTypes.bool,
+  };
+
   public render() {
     const { children } = this.props;
+
+    // if (this.props.isModal && Modal) {
+    //   return (
+    //     <React.Fragment>
+    //       <PageRenderer location={{ pathname: `/` }} />
+    //       <Modal isOpen={true} location={location}>
+    //         {this.props.children}
+    //       </Modal>
+    //     </React.Fragment>
+    //   )
+    // }
 
     return (
       <StaticQuery

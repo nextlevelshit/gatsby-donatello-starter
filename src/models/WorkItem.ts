@@ -1,8 +1,8 @@
 import WorkPicture from './WorkPicture';
 
 interface WorkItem {
-  title: string;
-  pictures?: [WorkPicture];
+  name: string;
+  children?: WorkPicture[];
 }
 
 export default WorkItem;

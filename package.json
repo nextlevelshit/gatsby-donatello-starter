@@ -70,6 +70,11 @@
     "typography": "^0.16.17"
   },
   "dependencies": {
-    "gatsby-plugin-google-tagmanager": "^2.0.5"
+    "gatsby-image": "^2.0.31",
+    "gatsby-plugin-google-tagmanager": "^2.0.5",
+    "gatsby-plugin-sharp": "^2.0.25",
+    "gatsby-transformer-sharp": "^2.1.15",
+    "slash": "^2.0.0",
+    "slug": "^1.0.0"
   }
 }

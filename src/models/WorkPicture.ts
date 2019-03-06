@@ -1,6 +1,9 @@
+import { FluidObject } from 'gatsby-image';
+
 interface WorkPicture {
-  url: string;
-  alt?: string;
+  childImageSharp: {
+    fluid: FluidObject;
+  };
 }
 
 export default WorkPicture;

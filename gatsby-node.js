@@ -1,12 +1,16 @@
-const path = require('path');
-const _ = require('lodash');
-const config = require('./config/SiteConfig').default;
+const path = require(`path`)
+const slash = require(`slash`)
+const slug = require(`slug`)
+// const _ = require(`lodash`)
+const config = require(`./config/SiteConfig`).default
+const { createFilePath } = require(`gatsby-source-filesystem`)
+
 
 // exports.onCreateNode = ({ node, actions }) => {
 //   const { createNodeField } = actions;
-//   if (node.internal.type === 'MarkdownRemark' && _.has(node, 'frontmatter') && _.has(node.frontmatter, 'title')) {
+//   if (node.internal.type === `MarkdownRemark` && _.has(node, `frontmatter`) && _.has(node.frontmatter, `title`)) {
 //     const slug = `${_.kebabCase(node.frontmatter.title)}`;
-//     createNodeField({ node, name: 'slug', value: slug });
+//     createNodeField({ node, name: `slug`, value: slug });
 //   }
 // };
 
@@ -38,22 +42,22 @@ const config = require('./config/SiteConfig').default;
 // const createClassificationPages = ({ createPage, posts, postsPerPage, numPages }) => {
 //   const classifications = [
 //     {
-//       singularName: 'category',
-//       pluralName: 'categories',
+//       singularName: `category`,
+//       pluralName: `categories`,
 //       template: {
 //         part: path.resolve(`src/templates/Category.tsx`),
 //         all: path.resolve(`src/templates/AllCategory.tsx`),
 //       },
-//       postsByClassificationNames: getPostsByType(posts, 'category'),
+//       postsByClassificationNames: getPostsByType(posts, `category`),
 //     },
 //     {
-//       singularName: 'tag',
-//       pluralName: 'tags',
+//       singularName: `tag`,
+//       pluralName: `tags`,
 //       template: {
 //         part: path.resolve(`src/templates/Tag.tsx`),
 //         all: path.resolve(`src/templates/AllTag.tsx`),
 //       },
-//       postsByClassificationNames: getPostsByType(posts, 'tags'),
+//       postsByClassificationNames: getPostsByType(posts, `tags`),
 //     },
 //   ];
 
@@ -82,13 +86,190 @@ const config = require('./config/SiteConfig').default;
 //   });
 // };
 
-// exports.onCreateWebpackConfig = ({ stage, actions }) => {
-//   actions.setWebpackConfig({
-//                              resolve: {
-//                                modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-//                              },
-//                            });
-// };
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, `src`), `node_modules`],
+    },
+  })
+}
+
+// const createWorkCategoryNode = async ({
+//   key,
+//   name,
+//   path,
+//   createNodeId,
+//   createContentDigest,
+//   createNode
+// }) => {
+//   const node = {
+//     id: createNodeId(`work-category-${key}`),
+//     path,
+//     parent: null,
+//     children: [],
+//     internal: {
+//       type: `WorkCategory`,
+//       description: `WorkCategory "${name}"`
+//     }
+//   }
+
+//   node.internal.contentDigest = createContentDigest(node)
+
+//   console.log(`Creating new node`, node)
+
+//   createNode(node)
+// }
+
+// const createWorkItemNode = async ({
+//   key,
+//   name,
+//   path,
+//   createNodeId,
+//   createContentDigest,
+//   createNode
+// })
+
+// const createWorkCategories = ({
+//   createNode, 
+//   createNodeId, 
+//   createContentDigest
+// }) => {
+//   const categories = [
+//     { 
+//       name: `sculpture`,
+//       path: `work/scuplture`
+//     },
+//     { 
+//       name: `drawing`,
+//       path: `work/drawing`
+//     },
+//     { 
+//       name: `watercolor`,
+//       path: `work/watercolor`
+//     }
+//   ]
+
+
+//   // console.log(categories)
+
+//   categories.forEach((category, key) => createWorkCategoryNode({
+//     name: category.name,
+//     key,
+//     path: category.path,
+//     createNodeId,
+//     createContentDigest,
+//     createNode
+//   }))
+// }
+
+// exports.sourceNodes = ({ 
+//   actions, 
+//   createNodeId, 
+//   createContentDigest 
+// }) => {
+//   const { createNode } = actions
+
+//   createWorkCategories({createNode, createNodeId, createContentDigest})
+// }
+
+exports.onCreateNode = ({ node, getNodesByType, actions }) => {
+
+  const { 
+    createNodeField, 
+    createParentChildLink
+  } = actions
+
+  if (node.sourceInstanceName === `work`) {
+    // Prepare parent-child-relationship
+    const parentDirectory = path.normalize(`${node.dir}/`)
+    const parent = getNodesByType(`Directory`).find(
+      n => path.normalize(`${n.absolutePath}/`) === parentDirectory
+    )
+    // Connect work items and categories
+    if (node.internal.type === `Directory`) {
+      // Append parent-child-relationship
+      if (parent) {
+        node.parent = parent.id
+        createParentChildLink({ child: node, parent: parent })
+      }
+      // Flag work categories for easier searchability
+      if (!node.relativeDirectory) {
+        createNodeField({
+          node,   
+          name: `workCategory`,
+          value: true
+        })
+      }
+      // Flag work items for better searchability
+      if (node.relativeDirectory !== `..` && node.relativeDirectory !== ``) {
+        createNodeField({
+          node,   
+          name: `workItem`,
+          value: true
+        })
+      }      
+    }
+    // Connect work pictures
+    if (node.internal.type === `File`) {
+      // Append parent-child-relationship
+      if (parent) {
+        // node.parent = parent.id
+        createParentChildLink({ child: node, parent: parent })
+      }
+      // Flag work picture for better searchability
+      if (config.allowedWorkExtensions.find(ext => ext === node.extension)) {
+        createNodeField({
+          node,   
+          name: `workPicture`,
+          value: true
+        })
+      }
+    }
+  }
+  // if (node.internal.type === `MarkdownRemark`) {
+  //   console.log(createFilePath({ node, getNode, basePath: `pages` }))
+  // }
+}
+
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
+
+  return graphql(
+    `
+    {
+      allDirectory(
+        filter: {
+          sourceInstanceName: { eq: "work" }
+          fields: { workItem: { eq: true }}
+        }
+      ) {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    if (result.errors) {
+      throw result.errors
+    }
+
+    const workItemTemplate = path.resolve(`src/templates/work-item.tsx`)
+
+    result.data.allDirectory.edges.map(e => e.node).forEach(workItem => {
+      createPage({
+        path: `/${slug(workItem.id)}/`,
+        component: slash(workItemTemplate),
+        context: {
+          id: workItem.id,
+        },
+      })
+    })
+  })
+}
 
 // exports.createPages = ({ actions, graphql }) => {
 //   const { createPage } = actions;
@@ -132,7 +313,7 @@ const config = require('./config/SiteConfig').default;
 //          .forEach((_, i) => {
 //            createPage({
 //                         path: i === 0 ? `/blog` : `/blog/${i + 1}`,
-//                         component: path.resolve('./src/templates/Blog.tsx'),
+//                         component: path.resolve(`./src/templates/Blog.tsx`),
 //                         context: {
 //                           limit: postsPerPage,
 //                           skip: i * postsPerPage,

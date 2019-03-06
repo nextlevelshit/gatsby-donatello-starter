@@ -13,6 +13,8 @@ export default {
   author: 'Sarah Esser', // Author for schemaORGJSONLD
   siteLogo: '/assets/logo.png', // Image for schemaORGJSONLD
 
+  allowedWorkExtensions: ['jpg', 'jpeg', 'png'],
+
   // siteFBAppID: '123456789', // Facebook App ID - Optional
   userTwitter: '', // Twitter Username - Optional
   ogSiteName: '', // Facebook Site Name - Optional

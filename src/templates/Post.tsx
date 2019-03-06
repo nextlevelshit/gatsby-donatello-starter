@@ -1,17 +1,11 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
-// import styled from 'styled-components';
-// import kebabCase from 'lodash/kebabCase';
 import { Layout, SEO } from '../components';
 import config from '../../config/SiteConfig';
 import '../utils/prismjs-theme.css';
 import PathContext from '../models/PathContext';
 import Post from '../models/Post';
-
-// const PostContent = styled.div`
-//   margin-top: 4rem;
-// `;
 
 interface Props {
   data: {

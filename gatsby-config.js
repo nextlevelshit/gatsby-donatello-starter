@@ -24,6 +24,8 @@ module.exports = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-lodash',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-sitemap',
       options: {
@@ -52,7 +54,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'work',
-        path: `${__dirname}/work`,
+        path: `${__dirname}/work/`,
       },
     },
     {
@@ -62,6 +64,7 @@ module.exports = {
         path: `${__dirname}/pages`,
       },
     },
+    
     {
       resolve: 'gatsby-transformer-remark',
       options: {
