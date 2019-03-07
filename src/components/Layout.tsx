@@ -3,11 +3,14 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from '../../config/Theme';
 import { media } from '../utils/media';
-// import split from 'lodash/split';
 import './layout.scss';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import * as PropTypes from 'prop-types';
+import config from '../../config/SiteConfig';
+import typography from '../utils/typography';
+
+const footerBumper = config.footerHeightRatio + 2;
 
 const GlobalStyle = createGlobalStyle`
   ::selection {
@@ -16,6 +19,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: ${theme.colors.bg};
     color: ${theme.colors.grey.default};
+    padding-bottom: ${typography.rhythm(footerBumper)};
+
     @media ${media.phone} {
       font-size: 14px;
     }

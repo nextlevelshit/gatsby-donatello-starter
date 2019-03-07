@@ -33,6 +33,9 @@ export const IndexQuery = graphql`
             ... on Directory {
               id
               name
+              fields {
+                slug
+              }
               children {
                 id
                 __typename

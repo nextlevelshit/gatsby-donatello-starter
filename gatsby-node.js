@@ -204,6 +204,11 @@ exports.onCreateNode = ({ node, getNodesByType, actions }) => {
       if (node.relativeDirectory !== `..` && node.relativeDirectory !== ``) {
         createNodeField({
           node,   
+          name: `slug`,
+          value: `/work/${slug(node.name)}/`
+        })
+        createNodeField({
+          node,   
           name: `workItem`,
           value: true
         })
@@ -211,18 +216,17 @@ exports.onCreateNode = ({ node, getNodesByType, actions }) => {
     }
     // Connect work pictures
     if (node.internal.type === `File`) {
-      // Append parent-child-relationship
-      if (parent) {
-        // node.parent = parent.id
-        createParentChildLink({ child: node, parent: parent })
-      }
-      // Flag work picture for better searchability
       if (config.allowedWorkExtensions.find(ext => ext === node.extension)) {
+        // Flag work picture for better searchability
         createNodeField({
           node,   
           name: `workPicture`,
           value: true
         })
+        // Append parent-child-relationship
+        if (parent) {
+          createParentChildLink({ child: node, parent: parent })
+        }
       }
     }
   }
@@ -261,7 +265,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     result.data.allDirectory.edges.map(e => e.node).forEach(workItem => {
       createPage({
-        path: `/${slug(workItem.id)}/`,
+        path: `/work/${slug(workItem.name)}/`,
         component: slash(workItemTemplate),
         context: {
           id: workItem.id,
