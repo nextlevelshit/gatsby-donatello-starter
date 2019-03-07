@@ -2,7 +2,7 @@ import WorkPicture from './WorkPicture';
 
 interface WorkItem {
   name: string;
-  children?: WorkPicture[];
+  children: WorkPicture[];
 }
 
 export default WorkItem;

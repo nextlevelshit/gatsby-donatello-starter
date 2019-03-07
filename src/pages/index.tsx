@@ -60,23 +60,3 @@ export const IndexQuery = graphql`
     }
   }
 `;
-// export const IndexQuery = graphql`
-//   query {
-//     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1) {
-//       totalCount
-//       edges {
-//         node {
-//           fields {
-//             slug
-//           }
-//           frontmatter {
-//             title
-//             date(formatString: "DD.MM.YYYY")
-//             category
-//           }
-//           timeToRead
-//         }
-//       }
-//     }
-//   }
-// `;

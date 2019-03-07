@@ -1,12 +1,13 @@
 import React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { StaticQuery, graphql, PageRenderer } from 'gatsby';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from '../../config/Theme';
 import { media } from '../utils/media';
 import './layout.scss';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import * as PropTypes from 'prop-types';
+import { WorkModal } from './WorkModal';
+// import * as PropTypes from 'prop-types';
 import config from '../../config/SiteConfig';
 import typography from '../utils/typography';
 
@@ -54,38 +55,24 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-// const Footer = styled.footer`
-//   text-align: center;
-//   padding: 3rem 0;
-//   span {
-//     font-size: 0.75rem;
-//   }
-// `;
+interface Props {
+  isModal?: boolean;
+}
 
-// let Modal;
-
-// import(`../components/Modal`).then(modal => {
-//   Modal = modal.default;
-// });
-
-export class Layout extends React.PureComponent<{}> {
-  static propTypes = {
-    isModal: PropTypes.bool,
-  };
-
+export class Layout extends React.PureComponent<Props> {
   public render() {
     const { children } = this.props;
 
-    // if (this.props.isModal && Modal) {
-    //   return (
-    //     <React.Fragment>
-    //       <PageRenderer location={{ pathname: `/` }} />
-    //       <Modal isOpen={true} location={location}>
-    //         {this.props.children}
-    //       </Modal>
-    //     </React.Fragment>
-    //   )
-    // }
+    if (this.props.isModal) {
+      return (
+        <React.Fragment>
+          <PageRenderer location={{ pathname: `/` }} />
+          <WorkModal isOpen={true} location={location}>
+            {this.props.children}
+          </WorkModal>
+        </React.Fragment>
+      );
+    }
 
     return (
       <StaticQuery
@@ -103,11 +90,6 @@ export class Layout extends React.PureComponent<{}> {
               <Header />
               {children}
               <Footer />
-              {/* <Footer>
-                &copy; {split(data.site.buildTime, '.')[2]} by Majid Hajian. All rights reserved. <br />
-                <a href="https://github.com/mhadaily/gatsby-starter-typescirpt-power-blog">GitHub Repository</a> <br />
-                <span>Last build: {data.site.buildTime}</span>
-              </Footer> */}
             </React.Fragment>
           </ThemeProvider>
         )}

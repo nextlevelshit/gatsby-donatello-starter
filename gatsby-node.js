@@ -186,6 +186,7 @@ exports.onCreateNode = ({ node, getNodesByType, actions }) => {
       n => path.normalize(`${n.absolutePath}/`) === parentDirectory
     )
     // Connect work items and categories
+    console.log(node)
     if (node.internal.type === `Directory`) {
       // Append parent-child-relationship
       if (parent) {
