@@ -14,7 +14,6 @@ const FooterWrapper = styled.div`
   bottom: 0;
   width: 100%;
   line-height: ${typography.rhythm(config.footerHeightRatio)};
-  margin-top: ${typography.rhythm(1)};
 
   a {
     font-size: ${theme.fontSize.small};

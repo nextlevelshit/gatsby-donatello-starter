@@ -1,13 +1,13 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { FaCaretRight, FaCaretLeft } from 'react-icons/fa';
-// import MdClose from 'react-icons/md';
+import { MdClose } from 'react-icons/md';
 import findIndex from 'lodash/findIndex';
 import mousetrap from 'mousetrap';
 // import * as PropTypes from 'prop-types';
 import { navigate, StaticQuery, graphql } from 'gatsby';
-// import typography from '../utils/typography';
-// import config from './../../config/SiteConfig';
+import typography from '../utils/typography';
+import config from './../../config/SiteConfig';
 import styled from 'styled-components';
 import * as slug from 'slug';
 
@@ -23,6 +23,7 @@ const ModalStyles = {
     right: 0,
     bottom: 0,
     left: 0,
+    overflow: `auto`,
     backgroundColor: props => props.theme.bg,
     padding: 0,
     border: `unset`,
@@ -39,12 +40,75 @@ const ModalStyles = {
   },
 };
 
-const ButtonPrevious: any = styled(FaCaretLeft)`
-  cursor: pointer;
+const footerHeight = typography.rhythm(3);
+
+const Paginator = styled.div`
+  font-family: ${config.headerFontFamily};
 `;
 
-const ButtonNext: any = styled(FaCaretRight)`
+const Previous: any = styled.div`
+  position: absolute;
+  z-index: 1000;
+  left: ${typography.rhythm(1)};
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: ${footerHeight};
+  opacity: 0.5;
   cursor: pointer;
+
+  :hover {
+    opacity: 1;
+  }
+`;
+
+const PreviousTitle: any = styled.div`
+  margin-left: ${typography.rhythm(0.5)};
+`;
+
+const PreviousIcon: any = styled(FaCaretLeft)`
+  cursor: pointer;
+  transform: scale(1.2);
+`;
+
+const Next: any = styled.div`
+  position: absolute;
+  z-index: 1000;
+  right: ${typography.rhythm(1)};
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: ${footerHeight};
+  opacity: 0.6;
+  cursor: pointer;
+
+  :hover {
+    opacity: 1;
+  }
+`;
+
+const NextTitle: any = styled.div`
+  margin-right: ${typography.rhythm(0.5)};
+`;
+
+const NextIcon: any = styled(FaCaretRight)`
+  transform: scale(1.2);
+`;
+
+const ButtonClose: any = styled(MdClose)`
+  position: absolute;
+  z-index: 1000;
+  right: ${typography.rhythm(1)};
+  top: ${typography.rhythm(1)};
+  cursor: pointer;
+  transform: scale(1.2);
+  opacity: 0.5;
+
+  :hover {
+    opacity: 1;
+  }
 `;
 
 interface Props {
@@ -53,21 +117,14 @@ interface Props {
 }
 
 export class WorkModal extends React.Component<Props> {
-  // static propTypes = {
-  //   isOpen: PropTypes.bool,
-  //   location: PropTypes.object.isRequired,
-  // }
-
   componentDidMount() {
     mousetrap.bind(`left`, () => this.previous());
     mousetrap.bind(`right`, () => this.next());
-    mousetrap.bind(`spacebar`, () => this.next());
   }
 
   componentWillUnmount() {
     mousetrap.unbind(`left`);
     mousetrap.unbind(`right`);
-    mousetrap.unbind(`spacebar`);
   }
 
   findCurrentIndex() {
@@ -76,10 +133,7 @@ export class WorkModal extends React.Component<Props> {
     return index;
   }
 
-  next(e: any = null) {
-    if (e) {
-      e.stopPropagation();
-    }
+  next(): any {
     const currentIndex = this.findCurrentIndex();
     if (currentIndex || currentIndex === 0) {
       let nextItem;
@@ -89,14 +143,23 @@ export class WorkModal extends React.Component<Props> {
       } else {
         nextItem = items[currentIndex + 1];
       }
-      navigate(`/work/${slug(nextItem.name)}/`);
+      return nextItem;
     }
+    return null;
   }
 
-  previous(e: any = null) {
+  nextLink(e: any = null): void {
     if (e) {
       e.stopPropagation();
     }
+    navigate(`/work/${slug(this.next().name)}/`);
+  }
+
+  nextTitle(): string {
+    return this.next().name;
+  }
+
+  previous(): any {
     const currentIndex = this.findCurrentIndex();
     if (currentIndex || currentIndex === 0) {
       let previousItem;
@@ -106,8 +169,19 @@ export class WorkModal extends React.Component<Props> {
       } else {
         previousItem = items[currentIndex - 1];
       }
-      navigate(`/work/${slug(previousItem.name)}/`);
+      return previousItem;
     }
+  }
+
+  previousLink(e: any = null): void {
+    if (e) {
+      e.stopPropagation();
+    }
+    navigate(`/work/${slug(this.previous().name)}/`);
+  }
+
+  previousTitle(): string {
+    return this.previous().name;
   }
 
   render() {
@@ -152,29 +226,20 @@ export class WorkModal extends React.Component<Props> {
             items = data.allDirectory.edges.map(e => e.node);
           }
 
-          console.log(items);
-
           return (
             <Modal isOpen={this.props.isOpen} onRequestClose={() => navigate(`/`)} contentLabel="Modal" style={ModalStyles}>
-              <div onClick={() => navigate(`/`)}>
-                <div>
-                  <ButtonPrevious data-testid="previous-post" onClick={e => this.previous(e)} />
-                  {this.props.children}
-                  <ButtonNext data-testid="next-post" onClick={e => this.next(e)} />
-                </div>
-                {/* <MdClose
-                  data-testid='modal-close';
-                  onClick={() => push(`/`)}
-                  css={{
-                    cursor: `pointer`,
-                    color: `rgba(255,255,255,0.8)`,
-                    fontSize: `30px`,
-                    position: `absolute`,
-                    top: typography.rhythm(1 / 4),
-                    right: typography.rhythm(1 / 4),
-                  }}
-                /> */}
-              </div>
+              {this.props.children}
+              <Paginator>
+                <Previous onClick={e => this.previousLink(e)} data-testid="previous-post">
+                  <PreviousIcon />
+                  <PreviousTitle>{this.previousTitle()}</PreviousTitle>
+                </Previous>
+                <Next data-testid="next-post" onClick={e => this.nextLink(e)}>
+                  <NextTitle>{this.nextTitle()}</NextTitle>
+                  <NextIcon />
+                </Next>
+              </Paginator>
+              <ButtonClose data-testid="modal-close" onClick={() => navigate(`/`)} />
             </Modal>
           );
         }}
