@@ -10,6 +10,7 @@ import typography from '../utils/typography';
 import config from './../../config/SiteConfig';
 import styled from 'styled-components';
 import * as slug from 'slug';
+import { media } from '../utils/media';
 
 let items: any;
 
@@ -44,11 +45,12 @@ const footerHeight = typography.rhythm(3);
 
 const Paginator = styled.div`
   font-family: ${config.headerFontFamily};
+  font-size: ${typography.rhythm(0.5)};
 `;
 
 const Previous: any = styled.div`
   position: absolute;
-  z-index: 1000;
+  // z-index: 1000;
   left: ${typography.rhythm(1)};
   bottom: 0;
   display: flex;
@@ -64,17 +66,24 @@ const Previous: any = styled.div`
 `;
 
 const PreviousTitle: any = styled.div`
-  margin-left: ${typography.rhythm(0.5)};
+  @media ${media.phone} {
+    display: none;
+  }
+
+  @media ${media.tablet} {
+    display: none;
+  }
 `;
 
 const PreviousIcon: any = styled(FaCaretLeft)`
   cursor: pointer;
   transform: scale(1.2);
+  margin-right: ${typography.rhythm(0.5)};
 `;
 
 const Next: any = styled.div`
   position: absolute;
-  z-index: 1000;
+  // z-index: 1000;
   right: ${typography.rhythm(1)};
   bottom: 0;
   display: flex;
@@ -90,11 +99,18 @@ const Next: any = styled.div`
 `;
 
 const NextTitle: any = styled.div`
-  margin-right: ${typography.rhythm(0.5)};
+  @media ${media.phone} {
+    display: none;
+  }
+
+  @media ${media.tablet} {
+    display: none;
+  }
 `;
 
 const NextIcon: any = styled(FaCaretRight)`
   transform: scale(1.2);
+  margin-left: ${typography.rhythm(0.5)};
 `;
 
 const ButtonClose: any = styled(MdClose)`
@@ -105,6 +121,8 @@ const ButtonClose: any = styled(MdClose)`
   cursor: pointer;
   transform: scale(1.2);
   opacity: 0.5;
+  margin-bottom: ${typography.rhythm(0.5)};
+  margin-left: ${typography.rhythm(0.5)};
 
   :hover {
     opacity: 1;
@@ -118,8 +136,8 @@ interface Props {
 
 export class WorkModal extends React.Component<Props> {
   componentDidMount() {
-    mousetrap.bind(`left`, () => this.previous());
-    mousetrap.bind(`right`, () => this.next());
+    mousetrap.bind(`left`, () => this.previousLink());
+    mousetrap.bind(`right`, () => this.nextLink());
   }
 
   componentWillUnmount() {

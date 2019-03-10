@@ -35,7 +35,8 @@ const WorkItemFooter: any = styled.footer`
   justify-content: center;
 
   h4 {
-    margin-bottom: ${typography.rhythm(0.4)};
+    // margin-bottom: ${typography.rhythm(0.4)};
+    margin: 0;
   }
 
   // p {

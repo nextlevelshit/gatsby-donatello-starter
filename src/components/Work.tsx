@@ -50,7 +50,7 @@ export class Work extends React.PureComponent<Props> {
     return (
       <Container>
         <Row>
-          <Column width={{ default: config.defaultColumnsLeft }}>
+          <Column width={{ default: config.defaultColumnsLeft, phone: 0, tablet: 0 }}>
             <Sidebar>
               <ul>
                 {categories.map((category, index) => (
@@ -61,7 +61,7 @@ export class Work extends React.PureComponent<Props> {
               </ul>
             </Sidebar>
           </Column>
-          <Column width={{ default: config.defaultColumnsRight }}>
+          <Column width={{ default: config.defaultColumnsRight, phone: 12, tablet: 12 }}>
             <Title>Work</Title>
 
             {categories.map((category, index) => (

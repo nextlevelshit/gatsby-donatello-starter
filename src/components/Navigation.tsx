@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import theme from '../../config/Theme';
 import typography from '../utils/typography';
+import { media } from '../utils/media';
 
 const fontFamily = typography.options.headerFontFamily ? typography.options.headerFontFamily.join() : 'inherit';
 
@@ -31,6 +32,10 @@ const NavigationLink = styled(Link)`
   color: ${theme.colors.grey.light};
   border-bottom: 1px solid ${theme.colors.secondary};
   box-shadow: inset 0 -2px 0 0 ${theme.colors.secondary};
+
+  @media ${media.phone} {
+    margin-right: ${typography.rhythm(0.5)};
+  }
 
   &:hover,
   &.active {
