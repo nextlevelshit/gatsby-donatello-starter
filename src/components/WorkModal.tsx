@@ -10,6 +10,7 @@ import typography from '../utils/typography';
 import config from './../../config/SiteConfig';
 import styled from 'styled-components';
 import * as slug from 'slug';
+import * as truncate from 'truncate';
 import { media } from '../utils/media';
 
 let items: any;
@@ -130,7 +131,7 @@ const ButtonClose: any = styled(MdClose)`
 `;
 
 interface Props {
-  location: any;
+  location: Location;
   isOpen?: boolean;
 }
 
@@ -147,8 +148,15 @@ export class WorkModal extends React.Component<Props> {
 
   findCurrentIndex() {
     let index;
-    index = findIndex(items, item => item.name === this.props.location.pathname.split(`/`)[2]);
+    index = findIndex(items, item => {
+      return this.slugify(item.name) === this.props.location.pathname.split(`/`)[2];
+    });
+
     return index;
+  }
+
+  slugify(raw: string): string {
+    return slug(raw, { lower: true });
   }
 
   next(): any {
@@ -167,14 +175,19 @@ export class WorkModal extends React.Component<Props> {
   }
 
   nextLink(e: any = null): void {
-    if (e) {
-      e.stopPropagation();
+    if (this.next()) {
+      if (e) {
+        e.stopPropagation();
+      }
+      navigate(`/work/${this.slugify(this.next().name)}/`);
     }
-    navigate(`/work/${slug(this.next().name)}/`);
   }
 
   nextTitle(): string {
-    return this.next().name;
+    if (this.next()) {
+      return truncate(this.next().name, 25);
+    }
+    return ``;
   }
 
   previous(): any {
@@ -189,17 +202,23 @@ export class WorkModal extends React.Component<Props> {
       }
       return previousItem;
     }
+    return null;
   }
 
   previousLink(e: any = null): void {
-    if (e) {
-      e.stopPropagation();
+    if (this.previous()) {
+      if (e) {
+        e.stopPropagation();
+      }
+      navigate(`/work/${this.slugify(this.previous().name)}/`);
     }
-    navigate(`/work/${slug(this.previous().name)}/`);
   }
 
   previousTitle(): string {
-    return this.previous().name;
+    if (this.previous()) {
+      return truncate(this.previous().name, 25);
+    }
+    return ``;
   }
 
   render() {

@@ -12590,6 +12590,11 @@ trough@^1.0.0:
   dependencies:
     glob "^7.1.2"
 
+truncate@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/truncate/-/truncate-2.0.1.tgz#dd1a6d15630515663d8475f6f24edf2f800ebb1b"
+  integrity sha1-3RptFWMFFWY9hHX28k7fL4AOuxs=
+
 ts-node@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-7.0.1.tgz#9562dc2d1e6d248d24bc55f773e3f614337d9baf"

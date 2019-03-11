@@ -8,6 +8,7 @@ import { Title } from './Title';
 import { WorkItem } from './WorkItem';
 import { Link } from 'gatsby';
 import typography from '../utils/typography';
+import { Sidebar } from './Sidebar';
 
 interface Props {
   data: {
@@ -20,6 +21,7 @@ interface Props {
 
 const WorkCategoryTitle: any = styled.h2`
   padding-top: ${typography.rhythm(1)};
+  text-transform: uppercase;
 `;
 
 const WorkCategoryContainer: any = styled.div``;
@@ -28,18 +30,6 @@ const WorkItemRow: any = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0 -${config.gridGutter * 0.5}rem;
-`;
-
-const Sidebar: any = styled.aside`
-  position: sticky;
-  top: ${typography.rhythm(1)};
-  margin-top: ${typography.rhythm(1)};
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
 `;
 
 export class Work extends React.PureComponent<Props> {

@@ -79,6 +79,7 @@
     "react-icons": "^3.5.0",
     "react-modal": "^3.8.1",
     "slash": "^2.0.0",
-    "slug": "^1.0.0"
+    "slug": "^1.0.0",
+    "truncate": "^2.0.1"
   }
 }

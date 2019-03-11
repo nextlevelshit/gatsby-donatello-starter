@@ -5,8 +5,9 @@ const colors = {
   white: '#fff',
   grey: {
     dark: '#212529',
-    default: 'rgba(0, 0, 0, 0.7)',
-    light: '#6c757d',
+    default: '#6c757d',
+    transparent: 'rgba(0, 0, 0, 0.2)',
+    light: '#edeff1',
     ultraLight: '#f8f9fa',
   },
 };

@@ -1,4 +1,4 @@
-import WorkItem from './WorkItem';
+import WorkItem from './WorkItem.model';
 
 interface Work {
   title: string;

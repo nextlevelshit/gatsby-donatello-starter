@@ -3,24 +3,24 @@ import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import { Layout } from '../components';
 import config from '../../config/SiteConfig';
-import WorkItem from '../models/WorkItem';
+import WorkItem from '../models/WorkItem.model';
+import PathContext from '../models/PathContext.model';
 import styled from 'styled-components';
 import typography from '../utils/typography';
 import Img from 'gatsby-image';
 import mousetrap from 'mousetrap';
 import theme from '../../config/Theme';
+import { media } from '../utils/media';
 
 interface Props {
   data: {
     directory: WorkItem;
   };
+  pathContext: PathContext;
 }
 
-const footerHeight = typography.rhythm(3);
-
-// const WorkItemHeader: any = styled.header`
-//   padding: ${typography.rhythm(0.5)} ${typography.rhythm(1)};
-// `;
+const { rhythm } = typography;
+const footerHeight = rhythm(3);
 
 const WorkItemFooter: any = styled.footer`
   position: absolute;
@@ -28,25 +28,50 @@ const WorkItemFooter: any = styled.footer`
   display: flex;
   flex-direction: column;
   height: ${footerHeight};
-  padding: ${typography.rhythm(0.5)} ${typography.rhythm(1)};
+  padding: ${rhythm(0.5)} ${rhythm(1)};
   width: 100%;
   text-align: center;
   align-items: center;
   justify-content: center;
 
   h4 {
-    // margin-bottom: ${typography.rhythm(0.4)};
-    margin: 0;
+    margin-bottom: ${rhythm(0.4)};
+
+    @media ${media.phone} {
+      margin: 0;
+    }
+
+    @media ${media.tablet} {
+      margin: 0;
+    }
   }
 
-  // p {
-  //   margin: 0;
-  //   padding: ${typography.rhythm(0.05)} ${typography.rhythm(0.2)};
-  //   background: ${theme.colors.grey.ultraLight};
-  //   border-radius: 3px;
-  //   font-size: ${typography.rhythm(0.4)};
-  //   color: ${theme.colors.grey.light};
-  // }
+  p {
+    margin: 0;
+    padding: ${rhythm(0.02)} ${rhythm(0.2)};
+    background: ${theme.colors.grey.light};
+    border-radius: 3px;
+    font-size: ${rhythm(0.4)};
+    color: ${theme.colors.grey.default};
+
+    kbd {
+      font-size: ${rhythm(0.4)};
+      background: ${theme.colors.white};
+      box-shadow: 0 1px 1px ${theme.colors.grey.default};
+      color: ${theme.colors.grey.dark};
+      border-radius: 3px;
+      margin: 0 ${rhythm(0.2)};
+      padding: 0 ${rhythm(0.2)};
+    }
+
+    @media ${media.phone} {
+      display: none;
+    }
+
+    @media ${media.tablet} {
+      display: none;
+    }
+  }
 `;
 
 const WorkItemPicture: any = styled.main`
@@ -55,25 +80,23 @@ const WorkItemPicture: any = styled.main`
   left: 0;
   right: 0;
   bottom: ${footerHeight};
-  padding: ${typography.rhythm(1)} 0;
+  padding: ${rhythm(1)} 0;
 `;
 
 const imageIndicatorTranslate = `.75rem`;
 
 const ImageIndicator: any = styled.div`
   position: absolute;
-  top:  ${typography.rhythm(1)};
+  top: ${rhythm(1)};
   left: 0;
   min-width: 4rem;
   display: flex;
   align-items: center;
   flex-direction: column;
-  color: ${theme.colors.grey.light};
-  // font-size: ${typography.rhythm(0.6)};
+  opacity: 0.5;
 
   sup,
   sub {
-    // font-size: ${theme.fontSize.big};
     font-weight: 700;
   }
 
@@ -139,9 +162,9 @@ export default class WorkItemPage extends React.PureComponent<Props> {
         </WorkItemPicture>
         <WorkItemFooter>
           <h4>{workItem.name}</h4>
-          {/* <p>
-            Navigation: <kbd>spacebar</kbd> Next Image · <kbd>←</kbd> Previous Work · <kbd>→</kbd> Next Work 
-          </p> */}
+          <p>
+            Press <kbd>space</kbd> to navigate through images and press <kbd>←</kbd> or <kbd>→</kbd> to navigate through the work pieces.
+          </p>
         </WorkItemFooter>
       </Layout>
     );

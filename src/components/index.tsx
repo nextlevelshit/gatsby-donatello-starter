@@ -1,4 +1,5 @@
 export * from './Column';
+export * from './Container';
 export * from './Footer';
 export * from './Header';
 export * from './Layout';
@@ -9,6 +10,7 @@ export * from './SEO';
 export * from './Wrapper';
 // export * from './Sidebar';
 // export * from './SidebarItem';
-export * from './Title';
 export * from './Pagination';
+export * from './Sidebar';
+export * from './Title';
 export * from './Work';

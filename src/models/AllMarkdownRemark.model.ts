@@ -1,8 +1,8 @@
-import Post from './Post';
+import Page from './Page.model';
 
 interface AllMarkdownRemark {
   totalCount: number;
-  edges: { node: Post }[];
+  edges: { node: Page }[];
 }
 
 export default AllMarkdownRemark;

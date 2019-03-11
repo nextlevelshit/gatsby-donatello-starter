@@ -1,6 +1,6 @@
-import PathContext from './PathContext';
+import PathContext from './PathContext.model';
 import PageResources from './PageResources';
-import Data from './Data';
+import Data from './Data.model';
 
 interface PageProps {
   data: Data;

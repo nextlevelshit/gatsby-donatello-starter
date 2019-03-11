@@ -17,7 +17,7 @@ const FooterWrapper = styled.div`
 
   a {
     font-size: ${theme.fontSize.small};
-    color: ${theme.colors.grey.light};
+    color: ${theme.colors.grey.default};
 
     &:hover,
     &.active {
@@ -41,12 +41,12 @@ export class Footer extends React.PureComponent<{}> {
       <FooterWrapper>
         <Container>
           <Row>
-            <Column width={{ default: config.defaultColumnsLeft }}>
+            <Column width={{ default: config.defaultColumnsLeft, phone: 6 }}>
               <a href="https://dailysh.it" target="_blank">
                 made with ♥
               </a>
             </Column>
-            <Column width={{ default: config.defaultColumnsRight }}>
+            <Column width={{ default: config.defaultColumnsRight, phone: 6 }}>
               <FooterLinkWrapper>
                 <Link to="/imprint" activeClassName="active">
                   Imprint

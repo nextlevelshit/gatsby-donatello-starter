@@ -26,7 +26,9 @@ const WorkItemLink: any = styled(Link)`
 `;
 
 const WorkItemTitle: any = styled.h3`
+  margin-top: ${typography.rhythm(0.4)};
   font-size: ${theme.fontSize.small};
+  font-weight: 300;
 `;
 
 interface Props {

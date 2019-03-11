@@ -1,4 +1,4 @@
-import WorkPicture from './WorkPicture';
+import WorkPicture from './WorkPicture.model';
 
 interface WorkItem {
   name: string;

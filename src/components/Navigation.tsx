@@ -29,7 +29,7 @@ const NavigationLink = styled(Link)`
   font-family: ${fontFamily};
   padding: 0 ${typography.rhythm(0.3)};
   margin-right: ${typography.rhythm(2)};
-  color: ${theme.colors.grey.light};
+  color: ${theme.colors.grey.default};
   border-bottom: 1px solid ${theme.colors.secondary};
   box-shadow: inset 0 -2px 0 0 ${theme.colors.secondary};
 

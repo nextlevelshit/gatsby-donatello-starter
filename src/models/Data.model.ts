@@ -1,4 +1,4 @@
-import AllMarkdownRemark from './AllMarkdownRemark';
+import AllMarkdownRemark from './AllMarkdownRemark.model';
 
 interface Data {
   allMarkdownRemark: AllMarkdownRemark;
