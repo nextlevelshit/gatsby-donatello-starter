@@ -15,7 +15,7 @@ interface Props {
     node: {
       name: string;
       children: any[];
-    }[];
+    };
   }[];
 }
 
