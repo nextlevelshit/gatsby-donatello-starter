@@ -18,6 +18,7 @@ interface Props {
     directory: WorkItem;
   };
   pathContext: PathContext;
+  location: Location;
 }
 
 const { rhythm } = typography;
@@ -150,12 +151,12 @@ export default class WorkItemPage extends React.PureComponent<Props> {
   }
 
   public render() {
-    const { data } = this.props;
+    const { data, location } = this.props;
     const { name } = data.directory;
     const { currentImage } = this.state;
 
     return (
-      <Layout isModal={true}>
+      <Layout isModal={true} location={location}>
         <Helmet title={`${name} | ${config.siteTitle}`} />
         <ImageIndicator>
           <sup>{this.state.index + 1}</sup>

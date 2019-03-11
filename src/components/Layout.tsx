@@ -54,18 +54,20 @@ const GlobalStyle = createGlobalStyle`
 
 interface Props {
   isModal?: boolean;
+  location?: Location;
+  children?: any;
 }
 
 export class Layout extends React.PureComponent<Props> {
   public render() {
-    const { children } = this.props;
+    const { children, location, isModal } = this.props;
 
-    if (this.props.isModal) {
+    if (isModal && location && children) {
       return (
         <React.Fragment>
           <PageRenderer location={{ pathname: `/` }} />
           <WorkModal isOpen={true} location={location}>
-            {this.props.children}
+            {children}
           </WorkModal>
         </React.Fragment>
       );

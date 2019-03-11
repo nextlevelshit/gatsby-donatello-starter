@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Container, Layout, Title } from '../components';
 import Helmet from 'react-helmet';
 import config from '../../config/SiteConfig';
-// import { Link } from 'gatsby';
 
 export default class NotFoundPage extends React.Component<any> {
   public render() {
