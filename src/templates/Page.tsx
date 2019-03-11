@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import { Layout, Container, Row, Column, Sidebar, Title } from '../components';
 import config from '../../config/SiteConfig';
-import '../utils/prismjs-theme.css';
 import PathContext from '../models/PathContext.model';
 import Page from '../models/Page.model';
 import styled from 'styled-components';

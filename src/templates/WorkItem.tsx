@@ -11,6 +11,7 @@ import Img from 'gatsby-image';
 import mousetrap from 'mousetrap';
 import theme from '../../config/Theme';
 import { media } from '../utils/media';
+import * as truncate from 'truncate';
 
 interface Props {
   data: {
@@ -39,6 +40,7 @@ const WorkItemFooter: any = styled.footer`
 
     @media ${media.phone} {
       margin: 0;
+      font-size: ${rhythm(0.4)};
     }
 
     @media ${media.tablet} {
@@ -111,6 +113,10 @@ const ImageIndicator: any = styled.div`
   sub {
     transform: translateX(${imageIndicatorTranslate});
   }
+
+  @media ${media.phone} {
+    display: none;
+  }
 `;
 
 const imageStyles = {
@@ -120,12 +126,12 @@ const imageStyles = {
   height: `100%`,
   objectFit: `contain`,
   marginBottom: footerHeight,
+  cursor: `pointer`,
 };
 
 const imageWrapperStyles = {
   display: `grid`,
   height: `100%`,
-  cursor: `pointer`,
 };
 
 export default class WorkItemPage extends React.PureComponent<Props> {
@@ -145,13 +151,12 @@ export default class WorkItemPage extends React.PureComponent<Props> {
 
   public render() {
     const { data } = this.props;
-    const workItem = data.directory;
-
+    const { name } = data.directory;
     const { currentImage } = this.state;
 
     return (
       <Layout isModal={true}>
-        <Helmet title={`${workItem.name} | ${config.siteTitle}`} />
+        <Helmet title={`${name} | ${config.siteTitle}`} />
         <ImageIndicator>
           <sup>{this.state.index + 1}</sup>
           <span>–</span>
@@ -161,7 +166,7 @@ export default class WorkItemPage extends React.PureComponent<Props> {
           <Img fluid={currentImage.fluid} style={imageWrapperStyles} imgStyle={imageStyles} />
         </WorkItemPicture>
         <WorkItemFooter>
-          <h4>{workItem.name}</h4>
+          <h4>{truncate(name, 40)}</h4>
           <p>
             Press <kbd>space</kbd> to navigate through images and press <kbd>←</kbd> or <kbd>→</kbd> to navigate through the work pieces.
           </p>

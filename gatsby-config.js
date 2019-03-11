@@ -1,13 +1,13 @@
-require('source-map-support').install();
-require('ts-node').register({
+require(`source-map-support`).install();
+require(`ts-node`).register({
   compilerOptions: {
-    module: 'commonjs',
-    target: 'es2017',
+    module: `commonjs`,
+    target: `es2017`,
   },
 });
 
-const config = require('./config/SiteConfig').default;
-const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;
+const config = require(`./config/SiteConfig`).default;
+const pathPrefix = config.pathPrefix === `/` ? `` : config.pathPrefix;
 
 module.exports = {
   pathPrefix: config.pathPrefix,
@@ -15,23 +15,21 @@ module.exports = {
     siteUrl: config.siteUrl + pathPrefix,
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
-    'gatsby-plugin-offline',
-    'gatsby-plugin-typescript',
-    'gatsby-plugin-sass',
-    'gatsby-plugin-manifest',
-    'gatsby-plugin-catch-links',
-    'gatsby-plugin-sitemap',
-    'gatsby-plugin-lodash',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-typescript`,
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-manifest`,
+    `gatsby-plugin-catch-links`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-lodash`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
-      resolve: 'gatsby-plugin-sitemap',
+      resolve: `gatsby-plugin-sitemap`,
       options: {
-        output: '/sitemap.xml',
-        // Exclude specific pages or groups of pages using glob parameters
-        // See: https://github.com/isaacs/minimatch
+        output: `/sitemap.xml`,
         exclude: [],
         query: `
           {
@@ -51,44 +49,49 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: 'work',
+        name: `work`,
         path: `${__dirname}/work/`,
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: 'pages',
+        name: `pages`,
         path: `${__dirname}/pages`,
       },
     },
     
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-external-links',
+            resolve: `gatsby-remark-images`,
             options: {
-              target: '_blank',
-              rel: 'nofollow noopener noreferrer',
+              maxWidth: 590,
+            }
+          },
+          {
+            resolve: `gatsby-remark-external-links`,
+            options: {
+              target: `_blank`,
+              rel: `nofollow noopener noreferrer`,
             },
           },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-autolink-headers',
+          `gatsby-remark-autolink-headers`,
         ],
       },
     },
     {
-      resolve: 'gatsby-plugin-typography',
+      resolve: `gatsby-plugin-typography`,
       options: {
-        pathToConfigModule: 'src/utils/typography.ts',
+        pathToConfigModule: `src/utils/typography.ts`,
       },
     },
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: `gatsby-plugin-manifest`,
       options: {
         name: config.siteTitle,
         short_name: config.siteTitleAlt,
@@ -96,7 +99,7 @@ module.exports = {
         start_url: config.pathPrefix,
         background_color: config.backgroundColor,
         theme_color: config.themeColor,
-        display: 'standalone',
+        display: `standalone`,
         icon: config.favicon,
       },
     },

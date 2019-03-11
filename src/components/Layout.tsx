@@ -3,7 +3,6 @@ import { StaticQuery, graphql, PageRenderer } from 'gatsby';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from '../../config/Theme';
 import { media } from '../utils/media';
-import './layout.scss';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { WorkModal } from './WorkModal';
@@ -17,6 +16,12 @@ const GlobalStyle = createGlobalStyle`
   ::selection {
     background: ${theme.colors.secondary};
   }
+
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+
   body {
     background: ${theme.colors.bg};
     color: ${theme.colors.grey.default};
@@ -26,32 +31,25 @@ const GlobalStyle = createGlobalStyle`
       font-size: 14px;
     }
   }
+
   a {
     color: ${theme.colors.primary};
     text-decoration: none;
     transition: all ${theme.transitions.normal};
   }
+
   a:hover {
     color: ${theme.colors.primary};
   }
+
   h1, h2, h3, h4 {
     color: ${theme.colors.grey.dark};
+    text-transform: uppercase;
   }
-  label {
-    margin-bottom: .5rem;
-    color: ${theme.colors.grey.dark};
-  }
-  input, textarea {
-    border-radius: .5rem;
-    border: none;
-    background: rgba(0, 0, 0, 0.05);
-    padding: .25rem 1rem;
-    &:focus {
-      outline: none;
-    }
-  }
-  .textRight {
-    text-align:right;
+
+  .modal-body--open,
+  .modal-html--open {
+    overflow: hidden;
   }
 `;
 

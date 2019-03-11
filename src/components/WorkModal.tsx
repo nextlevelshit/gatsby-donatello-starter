@@ -5,7 +5,7 @@ import { MdClose } from 'react-icons/md';
 import findIndex from 'lodash/findIndex';
 import mousetrap from 'mousetrap';
 // import * as PropTypes from 'prop-types';
-import { navigate, StaticQuery, graphql } from 'gatsby';
+import { navigate, StaticQuery, graphql, push } from 'gatsby';
 import typography from '../utils/typography';
 import config from './../../config/SiteConfig';
 import styled from 'styled-components';
@@ -51,7 +51,6 @@ const Paginator = styled.div`
 
 const Previous: any = styled.div`
   position: absolute;
-  // z-index: 1000;
   left: ${typography.rhythm(1)};
   bottom: 0;
   display: flex;
@@ -80,11 +79,18 @@ const PreviousIcon: any = styled(FaCaretLeft)`
   cursor: pointer;
   transform: scale(1.2);
   margin-right: ${typography.rhythm(0.5)};
+
+  @media ${media.phone} {
+    margin-right: ${typography.rhythm(2)};
+  }
+
+  @media ${media.tablet} {
+    margin-right: ${typography.rhythm(2)};
+  }
 `;
 
 const Next: any = styled.div`
   position: absolute;
-  // z-index: 1000;
   right: ${typography.rhythm(1)};
   bottom: 0;
   display: flex;
@@ -112,11 +118,18 @@ const NextTitle: any = styled.div`
 const NextIcon: any = styled(FaCaretRight)`
   transform: scale(1.2);
   margin-left: ${typography.rhythm(0.5)};
+
+  @media ${media.phone} {
+    margin-left: ${typography.rhythm(2)};
+  }
+
+  @media ${media.tablet} {
+    margin-left: ${typography.rhythm(2)};
+  }
 `;
 
 const ButtonClose: any = styled(MdClose)`
   position: absolute;
-  z-index: 1000;
   right: ${typography.rhythm(1)};
   top: ${typography.rhythm(1)};
   cursor: pointer;
@@ -127,6 +140,16 @@ const ButtonClose: any = styled(MdClose)`
 
   :hover {
     opacity: 1;
+  }
+
+  @media ${media.phone} {
+    margin-bottom: ${typography.rhythm(2)};
+    margin-left: ${typography.rhythm(2)};
+  }
+
+  @media ${media.tablet} {
+    margin-bottom: ${typography.rhythm(2)};
+    margin-left: ${typography.rhythm(2)};
   }
 `;
 
@@ -179,7 +202,7 @@ export class WorkModal extends React.Component<Props> {
       if (e) {
         e.stopPropagation();
       }
-      navigate(`/work/${this.slugify(this.next().name)}/`);
+      push(`/work/${this.slugify(this.next().name)}/`);
     }
   }
 
@@ -210,7 +233,7 @@ export class WorkModal extends React.Component<Props> {
       if (e) {
         e.stopPropagation();
       }
-      navigate(`/work/${this.slugify(this.previous().name)}/`);
+      push(`/work/${this.slugify(this.previous().name)}/`);
     }
   }
 
@@ -264,9 +287,17 @@ export class WorkModal extends React.Component<Props> {
           }
 
           return (
-            <Modal isOpen={this.props.isOpen} onRequestClose={() => navigate(`/`)} contentLabel="Modal" style={ModalStyles}>
+            <Modal
+              isOpen={this.props.isOpen ? true : false}
+              onRequestClose={() => navigate(`/`, { replace: true })}
+              contentLabel="Modal"
+              style={ModalStyles}
+              htmlOpenClassName="modal-html--open"
+              bodyOpenClassName="modal-body--open"
+            >
               {this.props.children}
               <Paginator>
+                <ButtonClose data-testid="modal-close" onClick={() => navigate(`/`, { replace: true })} />
                 <Previous onClick={e => this.previousLink(e)} data-testid="previous-post">
                   <PreviousIcon />
                   <PreviousTitle>{this.previousTitle()}</PreviousTitle>
@@ -276,7 +307,6 @@ export class WorkModal extends React.Component<Props> {
                   <NextIcon />
                 </Next>
               </Paginator>
-              <ButtonClose data-testid="modal-close" onClick={() => navigate(`/`)} />
             </Modal>
           );
         }}
