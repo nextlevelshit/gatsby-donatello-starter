@@ -4,7 +4,6 @@ import { FaCaretRight, FaCaretLeft } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
 import findIndex from 'lodash/findIndex';
 import mousetrap from 'mousetrap';
-// import * as PropTypes from 'prop-types';
 import { navigate, StaticQuery, graphql, push } from 'gatsby';
 import typography from '../utils/typography';
 import config from './../../config/SiteConfig';
@@ -25,7 +24,7 @@ const ModalStyles = {
     right: 0,
     bottom: 0,
     left: 0,
-    overflow: `auto`,
+    overflow: `hidden`,
     backgroundColor: props => props.theme.bg,
     padding: 0,
     border: `unset`,
@@ -51,8 +50,9 @@ const Paginator = styled.div`
 
 const Previous: any = styled.div`
   position: absolute;
-  left: ${typography.rhythm(1)};
+  left: 0;
   bottom: 0;
+  padding: ${typography.rhythm(1)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,7 +91,7 @@ const PreviousIcon: any = styled(FaCaretLeft)`
 
 const Next: any = styled.div`
   position: absolute;
-  right: ${typography.rhythm(1)};
+  right: 0;
   bottom: 0;
   display: flex;
   align-items: center;
@@ -99,6 +99,7 @@ const Next: any = styled.div`
   height: ${footerHeight};
   opacity: 0.6;
   cursor: pointer;
+  padding: ${typography.rhythm(1)};
 
   :hover {
     opacity: 1;
@@ -128,29 +129,21 @@ const NextIcon: any = styled(FaCaretRight)`
   }
 `;
 
-const ButtonClose: any = styled(MdClose)`
+const ButtonCloseWrapper: any = styled.div`
   position: absolute;
-  right: ${typography.rhythm(1)};
-  top: ${typography.rhythm(1)};
+  right: 0;
+  top: 0;
   cursor: pointer;
-  transform: scale(1.2);
   opacity: 0.5;
-  margin-bottom: ${typography.rhythm(0.5)};
-  margin-left: ${typography.rhythm(0.5)};
+  padding: ${typography.rhythm(1)};
 
   :hover {
     opacity: 1;
   }
+`;
 
-  @media ${media.phone} {
-    margin-bottom: ${typography.rhythm(2)};
-    margin-left: ${typography.rhythm(2)};
-  }
-
-  @media ${media.tablet} {
-    margin-bottom: ${typography.rhythm(2)};
-    margin-left: ${typography.rhythm(2)};
-  }
+const ButtonClose: any = styled(MdClose)`
+  transform: scale(1.2);
 `;
 
 interface Props {
@@ -297,7 +290,9 @@ export class WorkModal extends React.Component<Props> {
             >
               {this.props.children}
               <Paginator>
-                <ButtonClose data-testid="modal-close" onClick={() => navigate(`/`, { replace: true })} />
+                <ButtonCloseWrapper data-testid="modal-close" onClick={() => navigate(`/`, { replace: true })}>
+                  <ButtonClose />
+                </ButtonCloseWrapper>
                 <Previous onClick={e => this.previousLink(e)} data-testid="previous-post">
                   <PreviousIcon />
                   <PreviousTitle>{this.previousTitle()}</PreviousTitle>

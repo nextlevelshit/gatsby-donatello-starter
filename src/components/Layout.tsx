@@ -6,7 +6,6 @@ import { media } from '../utils/media';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { WorkModal } from './WorkModal';
-// import * as PropTypes from 'prop-types';
 import config from '../../config/SiteConfig';
 import typography from '../utils/typography';
 
