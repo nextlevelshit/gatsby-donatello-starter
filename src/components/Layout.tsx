@@ -49,6 +49,7 @@ const GlobalStyle = createGlobalStyle`
   .modal-body--open,
   .modal-html--open {
     overflow: hidden;
+    position: fixed;
   }
 `;
 

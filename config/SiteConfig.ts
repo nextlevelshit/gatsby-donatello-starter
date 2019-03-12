@@ -2,7 +2,7 @@ export default {
   pathPrefix: '/', // Prefix for all links. If you deploy your site to example.com/portfolio your pathPrefix should be "portfolio"
   siteTitle: 'SARAH ESSER', // Navigation and Site Title
   siteTitleAlt: 'SARAH ESSER - Artist and Sculptor from Berlin, Paris', // Alternative Site title for SEO
-  siteUrl: 'http://sarahesser.de', // Domain of your site. No trailing slash!
+  siteUrl: 'https://sarahesser.de', // Domain of your site. No trailing slash!
   siteLanguage: 'en', // Language Tag on <html> element
   siteBanner: '/assets/banner.jpg', // Your image for og:image tag. You can find it in the /static folder
   favicon: 'src/favicon.png', // Your image for favicons. You can find it in the /src folder
