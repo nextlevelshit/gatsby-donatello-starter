@@ -12,6 +12,7 @@ import mousetrap from 'mousetrap';
 import theme from '../../config/Theme';
 import { media } from '../utils/media';
 import * as truncate from 'truncate';
+import { footerHeight, scrollBumper, scrollFooterHeight } from '../components/WorkModal';
 
 interface Props {
   data: {
@@ -22,7 +23,6 @@ interface Props {
 }
 
 const { rhythm } = typography;
-const footerHeight = rhythm(3);
 
 const WorkItemFooter: any = styled.footer`
   position: absolute;
@@ -35,6 +35,14 @@ const WorkItemFooter: any = styled.footer`
   text-align: center;
   align-items: center;
   justify-content: center;
+
+  @media ${media.phone} {
+    bottom: ${scrollBumper};
+  }
+
+  @media ${media.tablet} {
+    bottom: ${scrollBumper};
+  }
 
   h4 {
     margin-bottom: ${rhythm(0.4)};
@@ -84,6 +92,14 @@ const WorkItemPicture: any = styled.main`
   right: 0;
   bottom: ${footerHeight};
   padding: ${rhythm(1)} 0;
+
+  @media ${media.phone} {
+    bottom: ${scrollFooterHeight};
+  }
+
+  @media ${media.tablet} {
+    bottom: ${scrollFooterHeight};
+  }
 `;
 
 const imageIndicatorTranslate = `.75rem`;

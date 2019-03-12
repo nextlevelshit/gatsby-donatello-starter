@@ -101,7 +101,7 @@ const createWorkItemPages = ({ createPage, graphql }) => {
     if (result.errors) {
       throw result.errors
     }
-    const itemTemplate = path.resolve(`src/templates/WorkItem.tsx`)
+    const itemTemplate = path.resolve(`src/templates/WorkItem.template.tsx`)
     const items = result.data.allDirectory.edges
 
     items.forEach(({ node }, index) => {
@@ -149,7 +149,7 @@ const createMarkdownPages = ({ createPage, graphql }) => {
       throw result.errors
     }
     const pages = result.data.allMarkdownRemark.edges
-    const pageTemplate = path.resolve(`src/templates/Page.tsx`)
+    const pageTemplate = path.resolve(`src/templates/Page.template.tsx`)
 
     pages.forEach(({ node }, index) => {
       createPage({

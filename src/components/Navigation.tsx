@@ -14,9 +14,14 @@ const List = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
+
+  @media ${media.phone} {
+    justify-content: flex-end;
+  }
 `;
 
 const Item = styled.li`
+  margin-right: ${typography.rhythm(1)};
   display: inline-block;
   margin: 0;
   padding: 0;
@@ -27,20 +32,25 @@ const NavigationLink = styled(Link)`
   font-weight: 400;
   letter-spacing: 2px;
   font-family: ${fontFamily};
-  padding: 0 ${typography.rhythm(0.3)};
-  margin-right: ${typography.rhythm(2)};
+  margin-right: ${typography.rhythm(1)};
   color: ${theme.colors.grey.default};
-  border-bottom: 1px solid ${theme.colors.secondary};
-  box-shadow: inset 0 -2px 0 0 ${theme.colors.secondary};
+  border-bottom: 2px solid ${theme.colors.grey.tint};
 
   @media ${media.phone} {
-    margin-right: ${typography.rhythm(0.5)};
+    margin-right: 0;
+    margin-left: ${typography.rhythm(0.5)};
+    letter-spacing: 0;
   }
 
   &:hover,
+  &:focus {
+    color: ${theme.colors.grey.dark};
+    border-color: ${theme.colors.grey.dark};
+  }
+
   &.active {
     color: ${theme.colors.primary};
-    box-shadow: inset 0 -${typography.rhythm(1)} 0 0 ${theme.colors.secondary};
+    border-color: ${theme.colors.secondary};
   }
 `;
 

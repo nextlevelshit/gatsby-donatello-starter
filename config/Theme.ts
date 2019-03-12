@@ -6,6 +6,7 @@ const colors = {
   grey: {
     dark: '#212529',
     default: '#6c757d',
+    tint: '#C4C7CB',
     transparent: 'rgba(0, 0, 0, 0.2)',
     light: '#edeff1',
     ultraLight: '#f8f9fa',
@@ -13,7 +14,8 @@ const colors = {
 };
 
 const transitions = {
-  normal: '0.32s',
+  normal: '320s',
+  quick: '180ms',
 };
 
 const fontSize = {

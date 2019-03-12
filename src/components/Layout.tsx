@@ -10,6 +10,7 @@ import config from '../../config/SiteConfig';
 import typography from '../utils/typography';
 
 const footerBumper = config.footerHeightRatio + 2;
+const overlayTransition = `360ms`;
 
 const GlobalStyle = createGlobalStyle`
   ::selection {
@@ -29,15 +30,22 @@ const GlobalStyle = createGlobalStyle`
     @media ${media.phone} {
       font-size: 14px;
     }
+
+    #___gatsby {
+      opacity: 1;
+      transition: opacity 620ms ease-in;
+    }
   }
 
   a {
     color: ${theme.colors.primary};
     text-decoration: none;
     transition: all ${theme.transitions.normal};
+    outline: 0;
   }
 
-  a:hover {
+  a:hover,
+  a:focus {
     color: ${theme.colors.primary};
   }
 
@@ -46,10 +54,32 @@ const GlobalStyle = createGlobalStyle`
     text-transform: uppercase;
   }
 
-  .modal-body--open,
-  .modal-html--open {
-    overflow: hidden;
-    position: fixed;
+  .ReactModal__Body,
+  .ReactModal__Html {
+
+    &--open {
+      overflow: hidden; 
+      position: fixed;
+      width: 100%;
+      height: 100%;
+
+      #___gatsby {
+        opacity: 0;
+      }
+    }
+  }
+
+  .ReactModal__Overlay {
+    // opacity: 0;
+    // transition: opacity ${overlayTransition} ease-in-out;
+
+    &--after-open {
+      // opacity: 1;
+    }
+
+    &--before-close {
+      // opacity: 0;
+    }
   }
 `;
 

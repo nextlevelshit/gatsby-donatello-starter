@@ -29,16 +29,13 @@ export default {
   baseFontSize: '18px',
 
   // Header
-  headerHeightRatio: 1.5,
+  headerHeightRatio: 2,
   footerHeightRatio: 2,
 
   // Grid Gutter
-  gridGutter: 1, // rem
+  gridGutter: 2, // rem
   gridColumns: 12,
 
   defaultColumnsLeft: 2,
   defaultColumnsRight: 10,
-
-  //
-  POST_PER_PAGE: 4,
 };

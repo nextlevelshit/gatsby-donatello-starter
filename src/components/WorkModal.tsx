@@ -19,16 +19,16 @@ Modal.setAppElement(`#___gatsby`);
 const ModalStyles = {
   content: {
     position: `absolute`,
-    width: `100%`,
+    width: `100vw`,
+    height: `100vh`,
     top: 0,
-    right: 0,
-    bottom: 0,
     left: 0,
     overflow: `hidden`,
     backgroundColor: props => props.theme.bg,
     padding: 0,
     border: `unset`,
     borderRadius: `unset`,
+    // WebkitOverflowScrolling: `touch`,  
   },
   overlay: {
     position: `fixed`,
@@ -41,7 +41,9 @@ const ModalStyles = {
   },
 };
 
-const footerHeight = typography.rhythm(3);
+export const footerHeight = typography.rhythm(3);
+export const scrollBumper = typography.rhythm(2);
+export const scrollFooterHeight = typography.rhythm(5);
 
 const Paginator = styled.div`
   font-family: ${config.headerFontFamily};
@@ -62,6 +64,14 @@ const Previous: any = styled.div`
 
   :hover {
     opacity: 1;
+  }
+
+  @media ${media.phone} {
+    bottom: ${scrollBumper};
+  }
+
+  @media ${media.tablet} {
+    bottom: ${scrollBumper};
   }
 `;
 
@@ -103,6 +113,14 @@ const Next: any = styled.div`
 
   :hover {
     opacity: 1;
+  }
+
+  @media ${media.phone} {
+    bottom: ${scrollBumper};
+  }
+
+  @media ${media.tablet} {
+    bottom: ${scrollBumper};
   }
 `;
 
@@ -148,10 +166,15 @@ const ButtonClose: any = styled(MdClose)`
 
 interface Props {
   location: Location;
-  isOpen?: boolean;
+  isOpen: boolean;
 }
 
 export class WorkModal extends React.Component<Props> {
+  notClosed: boolean = true;
+  state = {
+    showModal: this.props.isOpen,
+  };
+
   componentDidMount() {
     mousetrap.bind(`left`, () => this.previousLink());
     mousetrap.bind(`right`, () => this.nextLink());
@@ -195,7 +218,7 @@ export class WorkModal extends React.Component<Props> {
       if (e) {
         e.stopPropagation();
       }
-      push(`/work/${this.slugify(this.next().name)}/`);
+      navigate(`/work/${this.slugify(this.next().name)}/`);
     }
   }
 
@@ -226,7 +249,7 @@ export class WorkModal extends React.Component<Props> {
       if (e) {
         e.stopPropagation();
       }
-      push(`/work/${this.slugify(this.previous().name)}/`);
+      navigate(`/work/${this.slugify(this.previous().name)}/`);
     }
   }
 
@@ -235,6 +258,19 @@ export class WorkModal extends React.Component<Props> {
       return truncate(this.previous().name, 25);
     }
     return ``;
+  }
+
+  navigateBack(): void {
+    navigate(`/`, { replace: true });
+  }
+
+  closeModal(): void {
+    this.setState({
+      showModal: false,
+    });
+    // setTimeout(() => {
+    this.navigateBack();
+    // }, 1000);
   }
 
   render() {
@@ -275,22 +311,26 @@ export class WorkModal extends React.Component<Props> {
           }
         `}
         render={data => {
+          const { isOpen } = this.props;
+
           if (!items) {
             items = data.allDirectory.edges.map(e => e.node);
           }
 
           return (
             <Modal
-              isOpen={this.props.isOpen ? true : false}
-              onRequestClose={() => navigate(`/`, { replace: true })}
+              isOpen={this.state.showModal}
+              onRequestClose={() => this.closeModal()}
+              closeTimeoutMS={360}
               contentLabel="Modal"
               style={ModalStyles}
-              htmlOpenClassName="modal-html--open"
-              bodyOpenClassName="modal-body--open"
+              htmlOpenClassName="ReactModal__Html--open"
+              shouldCloseOnOverlayClick={false}
+              shouldFocusAfterRender={false}
             >
               {this.props.children}
               <Paginator>
-                <ButtonCloseWrapper data-testid="modal-close" onClick={() => navigate(`/`, { replace: true })}>
+                <ButtonCloseWrapper data-testid="modal-close" onClick={() => this.closeModal()}>
                   <ButtonClose />
                 </ButtonCloseWrapper>
                 <Previous onClick={e => this.previousLink(e)} data-testid="previous-post">

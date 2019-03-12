@@ -19,15 +19,24 @@ const WorkItemLink: any = styled(Link)`
     flex: 0 0 33.3333333%;
     max-width: 33.3333333333%;
   }
+
   @media ${media.phone} {
     flex: 0 0 50%;
     max-width: 50%;
+  }
+
+  &:hover,
+  &:focus {
+    h3 {
+      color: ${theme.colors.grey.dark};
+    }
   }
 `;
 
 const WorkItemTitle: any = styled.h3`
   margin-top: ${typography.rhythm(0.4)};
   font-size: ${theme.fontSize.small};
+  color: ${theme.colors.grey.default};
   font-weight: 300;
 `;
 

@@ -11,7 +11,6 @@ const NavigationBrandWrapper: any = styled.div`
   display: flex;
   height: 100%;
   align-items: center;
-  background-color: ${theme.colors.grey.ultraLight};
   font-family: ${fontFamily};
   line-height: 0.9;
   text-transform: uppercase;
