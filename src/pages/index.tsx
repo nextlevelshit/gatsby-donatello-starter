@@ -1,7 +1,5 @@
 import React from 'react';
-import { Layout, Work } from '../components';
-import Helmet from 'react-helmet';
-import config from '../../config/SiteConfig';
+import { Layout, Work, SEO } from '../components';
 import { graphql } from 'gatsby';
 
 interface Props {
@@ -14,7 +12,7 @@ export default class IndexPage extends React.Component<Props> {
 
     return (
       <Layout>
-        <Helmet title={config.siteTitle} />
+        <SEO />
         <Work data={data.allDirectory.edges} />
       </Layout>
     );

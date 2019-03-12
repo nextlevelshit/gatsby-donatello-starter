@@ -5,7 +5,6 @@ export default {
   siteUrl: 'http://sarahesser.de', // Domain of your site. No trailing slash!
   siteLanguage: 'en', // Language Tag on <html> element
   siteBanner: '/assets/banner.jpg', // Your image for og:image tag. You can find it in the /static folder
-  defaultBg: '/assets/bg.png', // default post background header
   favicon: 'src/favicon.png', // Your image for favicons. You can find it in the /src folder
   siteBrand: 'Sarah<br>Esser',
   siteDescription: `Sarah Esser, born 1977 in Münster, lives and works in Berlin as an artist and sculptor. As a „Meisterschülerin“ of Prof. Berndt Wilde (Kunsthochschule Berlin) she received several prizes and scholarships in Europe. Her oeuvre comprises more than 100 sculptures, drawings and watercolors.`, // Your site description

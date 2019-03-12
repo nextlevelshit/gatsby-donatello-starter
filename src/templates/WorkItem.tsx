@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
-import { Layout } from '../components';
+import { Layout, SEO } from '../components';
 import config from '../../config/SiteConfig';
 import WorkItem from '../models/WorkItem.model';
 import PathContext from '../models/PathContext.model';
@@ -158,6 +158,7 @@ export default class WorkItemPage extends React.PureComponent<Props> {
     return (
       <Layout isModal={true} location={location}>
         <Helmet title={`${name} | ${config.siteTitle}`} />
+        <SEO />
         <ImageIndicator>
           <sup>{this.state.index + 1}</sup>
           <span>–</span>

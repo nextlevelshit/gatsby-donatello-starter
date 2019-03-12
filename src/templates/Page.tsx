@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
-import { Layout, Container, Row, Column, Sidebar, Title } from '../components';
+import { Layout, Container, Row, Column, Sidebar, Title, SEO } from '../components';
 import config from '../../config/SiteConfig';
 import PathContext from '../models/PathContext.model';
 import Page from '../models/Page.model';
@@ -62,6 +62,7 @@ export default class PostPage extends React.PureComponent<Props> {
         {page ? (
           <>
             <Helmet title={`${title} | ${config.siteTitle}`} />
+            <SEO />
             <Container>
               <Row>
                 <Column width={{ default: config.defaultColumnsLeft, phone: 0, tablet: 0 }}>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container, Layout, Title } from '../components';
+import { Container, Layout, Title, SEO } from '../components';
 import Helmet from 'react-helmet';
 import config from '../../config/SiteConfig';
 
@@ -8,6 +8,7 @@ export default class NotFoundPage extends React.Component<any> {
     return (
       <Layout>
         <Helmet title={`404 Not Found | ${config.siteTitle}`} />
+        <SEO />
         <Container>
           <Title>NOT FOUND</Title>
           <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
