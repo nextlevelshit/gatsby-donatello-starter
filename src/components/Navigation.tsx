@@ -54,17 +54,17 @@ export class Navigation extends React.PureComponent<{}> {
           </NavigationLink>
         </Item>
         <Item>
-          <NavigationLink to="/about" activeClassName="active">
+          <NavigationLink to="/about/" activeClassName="active">
             About
           </NavigationLink>
         </Item>
         <Item>
-          <NavigationLink to="/news" activeClassName="active">
+          <NavigationLink to="/news/" activeClassName="active">
             News
           </NavigationLink>
         </Item>
         <Item>
-          <NavigationLink to="/contact" activeClassName="active">
+          <NavigationLink to="/contact/" activeClassName="active">
             Contact
           </NavigationLink>
         </Item>
