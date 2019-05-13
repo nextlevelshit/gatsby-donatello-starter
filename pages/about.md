@@ -60,7 +60,7 @@ lives and works in Berlin, Germany
   04.02.2007 
   - „Sarah Esser - Gustav-Weidanz-Preis 2006“, Preisträgerausstellung Stiftung Moritzburg, KUNSTMUSEUM DES LANDES SACHSEN-ANHALT, Halle, DE 
 
-### GROUP EHIBITIONS
+### GROUP EXHIBITIONS
 
 <small>*Selection (for full list, please [contact](/page/contact))*</small>
 
@@ -258,7 +258,7 @@ Leipzig, September 2009*
 
 ---
 
-**„Sarah Esser - Zeichnung. Relief. Plastik.“ Galerie amGendarmenmarkt. Berlin, DE**
+**„Sarah Esser - Zeichnung. Relief. Plastik.“ Galerie am Gendarmenmarkt. Berlin, DE**
 
 *Gedanken zur Ausstellung von Sarah Esser*
 

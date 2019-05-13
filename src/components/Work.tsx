@@ -58,7 +58,7 @@ export class Work extends React.PureComponent<Props> {
               <WorkCategoryContainer key={index}>
                 <WorkCategoryTitle id={category.name}>{category.name}</WorkCategoryTitle>
                 <WorkItemRow>
-                  {category.children.map((item, i) => (
+                  {category.children.reverse().map((item, i) => (
                     <WorkItem data={item} key={i} />
                   ))}
                 </WorkItemRow>
