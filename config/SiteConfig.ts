@@ -21,7 +21,7 @@ export default {
   // Manifest and Progress color
   // See: https://developers.google.com/web/fundamentals/web-app-manifest/
   themeColor: '#3498DB',
-  backgroundColor: '#2b2e3c',
+  backgroundColor: '#FFF',
 
   // Settings for typography.ts
   headerFontFamily: 'Roboto Mono',
@@ -33,7 +33,7 @@ export default {
   footerHeightRatio: 2,
 
   // Grid Gutter
-  gridGutter: 2, // rem
+  gridGutter: 1, // rem
   gridColumns: 12,
 
   defaultColumnsLeft: 2,

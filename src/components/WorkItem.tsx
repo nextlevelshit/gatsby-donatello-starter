@@ -10,19 +10,24 @@ import theme from './../../config/Theme';
 
 const WorkItemLink: any = styled(Link)`
   display: block;
-  padding: 0 ${config.gridGutter * 0.5}rem;
-  margin-bottom: ${typography.rhythm(0.3)};
+  padding: ${config.gridGutter}px ${config.gridGutter * 0.5}px;
   flex: 0 0 25%;
   max-width: 25%;
+  transition: all 0ms;
+  background: ${config.backgroundColor};
+  position: sticky;
+  top: ${typography.rhythm(1)};
 
   @media ${media.tablet} {
+    top: 0;
     flex: 0 0 33.3333333%;
     max-width: 33.3333333333%;
   }
 
   @media ${media.phone} {
-    flex: 0 0 50%;
-    max-width: 50%;
+    top: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 
   &:hover,
@@ -30,6 +35,19 @@ const WorkItemLink: any = styled(Link)`
     h3 {
       color: ${theme.colors.grey.dark};
     }
+  }
+
+  h3 {
+    border-top: 1px solid transparent;
+    margin: ${typography.rhythm(0.4)} 0;
+    padding: 0 0.5rem;
+    font-size: ${typography.rhythm(0.5)};
+    min-height: ${typography.rhythm(1.5)};
+    line-height: ${typography.rhythm(0.5)};
+  }
+
+  .gatsby-image-wrapper div {
+    padding-bottom: 150% !important;
   }
 `;
 
