@@ -145,7 +145,7 @@ lives and works in Berlin, Germany
   - France, Academy of Fine Arts, FR 
 
 
-### AWARDS & SCHOLARSHIPS
+### AWARDS and SCHOLARSHIPS
 
 - 2011
   - Prix Sculpture / Fondations Roux et Tronchet, Academie des Beaux-Arts, Paris,FR  
@@ -174,6 +174,13 @@ lives and works in Berlin, Germany
 - Collection P.J. Klein, Berlin, DE
 - Collection P. Weckesser, Potsdam, DE
 - Collection City of Biesenthal, DE
+
+### CATALOGS
+
+- 2013
+  - [SARAH ESSER - Sculpture - *The Land Where I Love You*](/assets/catalogs/CATALOG_2013_SARAH_ESSER_M.pdf)
+- 2008
+  - [SARAH ESSER - zeichnung . relief . plastik - *Katalog zur Ausstellung in der Galerie am Gendarmenmarkt/Berlin*](/assets/catalogs/SARAH_ESSER_Katalog_2008_hoch.pdf)
 		
 ### PUBLICATIONS
 
