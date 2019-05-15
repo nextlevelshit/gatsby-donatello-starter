@@ -24,8 +24,8 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
 
 exports.onCreateNode = ({ node, getNodesByType, actions }) => {
 
-  const { 
-    createNodeField, 
+  const {
+    createNodeField,
     createParentChildLink
   } = actions
 
@@ -50,7 +50,7 @@ exports.onCreateNode = ({ node, getNodesByType, actions }) => {
       if (node.relativeDirectory !== `..` && node.relativeDirectory !== ``) {
         createNodeField({ node, name: `slug`, value: `/work/${slugify(node.name)}/` })
         createNodeField({ node, name: `workItem`, value: true })
-      }      
+      }     
     }
     // Connect work pictures
     if (node.internal.type === `File`) {
@@ -64,17 +64,19 @@ exports.onCreateNode = ({ node, getNodesByType, actions }) => {
       }
     }
   }
-  
+
   if (node.internal.type === `MarkdownRemark` && _.has(node, `frontmatter`) && _.has(node.frontmatter, `title`)) {
     createNodeField({ node, name: `slug`, value: slugify(node.frontmatter.title) });
   }
 }
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  createWorkItemPages({ createPage, graphql })
-  createMarkdownPages({ createPage, graphql })
+  await Promise.all([
+    createWorkItemPages({ createPage, graphql }),
+    createMarkdownPages({ createPage, graphql })
+  ])
 }
 
 const createWorkItemPages = ({ createPage, graphql }) => {
@@ -121,9 +123,9 @@ const createWorkItemPages = ({ createPage, graphql }) => {
   })
 }
 
-const createMarkdownPages = ({ createPage, graphql }) => {
+const createMarkdownPages = async ({ createPage, graphql }) => {
 
-  return graphql(
+  return await graphql(
     `
     {
       allMarkdownRemark(
